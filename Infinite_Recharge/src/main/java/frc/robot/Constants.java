@@ -25,4 +25,5 @@ public final class Constants {
     public static final double frontIntakeSpeed = 0.5;
     public static final double backIntakeSpeed = -0.5; // Haha Keeton mototr
     
+    public static final int shooterMotor = 20;
 }
