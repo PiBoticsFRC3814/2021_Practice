@@ -16,4 +16,13 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    
+//talon IDs
+    public static final int frontIntake = 10;
+    public static final int backIntake = 11;
+
+//motor Speeds
+    public static final double frontIntakeSpeed = 0.5;
+    public static final double backIntakeSpeed = -0.5; // Haha Keeton mototr
+    
 }
