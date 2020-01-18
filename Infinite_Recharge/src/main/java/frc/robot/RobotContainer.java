@@ -9,14 +9,17 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.PiboticsDrive;
+import frc.robot.commands.Shoot;
+import frc.robot.commands.StopShoot;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.commands.PiboticsDrive;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -30,6 +33,7 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   private final DriveTrain m_piboticsdrive = new DriveTrain();
+  private final Shooter m_shooter = new Shooter();
   private final Joystick m_joystick = new Joystick(0);
 
 
@@ -52,6 +56,10 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    final JoystickButton shooter = new JoystickButton(m_joystick, 1);
+
+    shooter.whenPressed(new Shoot(m_shooter));
+    shooter.whenReleased(new StopShoot(m_shooter));
   }
 
 
