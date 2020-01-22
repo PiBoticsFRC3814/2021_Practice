@@ -85,6 +85,7 @@ public class Shooter extends SubsystemBase {
   }
   public boolean maxRPM() {
     return Constants.shootable;
+    //returns if the RPM is at proper speed
   }
 
   @Override
