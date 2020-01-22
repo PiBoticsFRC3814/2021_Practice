@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.can.*;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
 
 public class IntakeBalls extends SubsystemBase {
@@ -16,19 +16,32 @@ public class IntakeBalls extends SubsystemBase {
    * Creates a new IntakeBalls.
    */
   WPI_TalonSRX frontIntake;
-  WPI_TalonSRX backIntake;
-
-
+  WPI_TalonSRX rearIntake;
 
   public IntakeBalls() {
     frontIntake = new WPI_TalonSRX(Constants.frontIntake);
-    backIntake = new WPI_TalonSRX(Constants.backIntake);
-
+    rearIntake = new WPI_TalonSRX(Constants.rearIntake);
     
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public void maintainIntakeFront(){
+    frontIntake.set(Constants.maintainSpeed);
+  }
+
+  public void ballIntakeFront(){
+    frontIntake.set(Constants.ballIntakeSpeed);
+  }
+
+  public void maintainIntakeRear(){
+    rearIntake.set(-Constants.maintainSpeed);
+  }
+
+  public void ballIntakeRear(){
+    rearIntake.set(-Constants.ballIntakeSpeed);
   }
 }

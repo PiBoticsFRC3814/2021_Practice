@@ -19,11 +19,12 @@ public final class Constants {
     
 //talon IDs
     public static final int frontIntake = 10;
-    public static final int backIntake = 11;
+    public static final int rearIntake = 11;
 
 //motor Speeds
-    public static final double frontIntakeSpeed = 0.5;
-    public static final double backIntakeSpeed = -0.5; // Haha Keeton mototr
+    public static final double maintainSpeed = 0.5;
+    public static final double ballIntakeSpeed = 0.75;
     
+
     public static final int shooterMotor = 20;
 }
