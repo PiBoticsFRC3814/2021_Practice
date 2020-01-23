@@ -17,7 +17,7 @@ public class LimeLight extends CommandBase {
 /** */
   double xs, ys, zs;
   public LimeLight() {
-    requires(RobotContainer.m_PiboticsDrive);
+    requires(RobotContainer.m_piboticsdrive);
     requires(RobotContainer.m_LimeLight);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -30,6 +30,44 @@ public class LimeLight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    RobotContainer.m_LimeLight.getData();
+    SmartDashboard.puBoolean("Target Acquired", RobotContainer.m_LimeLight.isValidTarget());
+    if (RobotContainer.m_LimeLight.x > 1)
+    {
+      xs = -0.3;
+    }
+    else if (RobotContainer.m_LimeLight.x < -1)
+    {
+      xs = 0.3;
+    }
+    else
+    {
+      xs = 0;
+    }
+
+    if (RobotContainer.m_LimeLight.yaw > 2)
+    {
+      ys = 0.1;
+    }
+    else if (RobotContainer.m_LimeLight.yaw < -2)
+    {
+      ys = -0.1;
+    }
+    else
+    {
+      ys = 0;
+    }
+    
+    if (RobotContainer.m_LimeLight.z < -20)
+    {
+      zs = -0.2;
+    }
+    else
+    {
+      zs = 0;
+    }
+
+    RobotContainer.m_piboticsdrive.
   }
 
   // Called once the command ends or is interrupted.
@@ -40,6 +78,13 @@ public class LimeLight extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if (RobotContainer.m_LimeLight.isValidTarget())
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
   }
 }
