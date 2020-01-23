@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.LimeLight;
 import frc.robot.commands.PiboticsDrive;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.StopShoot;
@@ -35,6 +36,7 @@ public class RobotContainer {
   private final DriveTrain m_piboticsdrive = new DriveTrain();
   private final Shooter m_shooter = new Shooter();
   private final Joystick m_joystick = new Joystick(0);
+  private final LimeLight m_LimeLight = new LimeLight();
 
 
   /**
