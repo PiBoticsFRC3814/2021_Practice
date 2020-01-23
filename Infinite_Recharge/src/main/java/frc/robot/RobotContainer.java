@@ -15,6 +15,7 @@ import frc.robot.commands.PiboticsDrive;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.StopShoot;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeBalls;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,6 +35,7 @@ public class RobotContainer {
 
   private final DriveTrain m_piboticsdrive = new DriveTrain();
   private final Shooter m_shooter = new Shooter();
+  private final IntakeBalls m_IntakeBallsFront = new IntakeBalls();
   private final Joystick m_joystick = new Joystick(0);
 
 
