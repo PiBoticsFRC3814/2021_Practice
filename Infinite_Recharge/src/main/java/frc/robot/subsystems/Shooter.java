@@ -26,7 +26,6 @@ public class Shooter extends SubsystemBase {
   private CANSparkMax m_motor;
   private CANPIDController m_pidController;
   private CANEncoder m_encoder;
-  public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
 
   public Shooter() {
      // initialize motor
@@ -50,42 +49,43 @@ public class Shooter extends SubsystemBase {
      // Encoder object created to display position values
      m_encoder = m_motor.getEncoder();
  
-     // PID coefficients
-     kP = 5e-5; 
-     kI = 1e-6;
-     kD = 0; 
-     kIz = 0; 
-     kFF = 0; 
-     kMaxOutput = 1; 
-     kMinOutput = -1;
-     maxRPM = 3814;
  
      // set PID coefficients
-     m_pidController.setP(kP);
-     m_pidController.setI(kI);
-     m_pidController.setD(kD);
-     m_pidController.setIZone(kIz);
-     m_pidController.setFF(kFF);
-     m_pidController.setOutputRange(kMinOutput, kMaxOutput);
+     m_pidController.setP(Constants.kP);
+     m_pidController.setI(Constants.kI);
+     m_pidController.setD(Constants.kD);
+     m_pidController.setIZone(Constants.kIz);
+     m_pidController.setFF(Constants.kFF);
+     m_pidController.setOutputRange(Constants.kMinOutput, Constants.kMaxOutput);
  
      // display PID coefficients on SmartDashboard
-     SmartDashboard.putNumber("P Gain", kP);
-     SmartDashboard.putNumber("I Gain", kI);
-     SmartDashboard.putNumber("D Gain", kD);
-     SmartDashboard.putNumber("I Zone", kIz);
-     SmartDashboard.putNumber("Feed Forward", kFF);
-     SmartDashboard.putNumber("Max Output", kMaxOutput);
-     SmartDashboard.putNumber("Min Output", kMinOutput);
+     SmartDashboard.putNumber("P Gain", Constants.kP);
+     SmartDashboard.putNumber("I Gain", Constants.kI);
+     SmartDashboard.putNumber("D Gain", Constants.kD);
+     SmartDashboard.putNumber("I Zone", Constants.kIz);
+     SmartDashboard.putNumber("Feed Forward", Constants.kFF);
+     SmartDashboard.putNumber("Max Output", Constants.kMaxOutput);
+     SmartDashboard.putNumber("Min Output", Constants.kMinOutput);
    }
   public void WheelsOn() {
 
-    m_pidController.setReference(maxRPM, ControlType.kVelocity);
-    SmartDashboard.putNumber("SetPoint", maxRPM);
+    m_pidController.setReference(Constants.maxRPM, ControlType.kVelocity);
+    SmartDashboard.putNumber("SetPoint", Constants.maxRPM);
     SmartDashboard.putNumber("ProcessVariable", m_encoder.getVelocity());
     
+    if (m_encoder.getVelocity() + 5 >= Constants.maxRPM && m_encoder.getVelocity() - 5 <= Constants.maxRPM) {
+      Constants.shootable = true;
+    }
+    else {
+      Constants.shootable = false;
+    }
   }
   public void WheelsOff() {
     m_motor.set(0.0);
+  }
+  public boolean maxRPM() {
+    return Constants.shootable;
+    //returns if the RPM is at proper speed
   }
 
   @Override
