@@ -12,6 +12,7 @@ import frc.robot.subsystems.IntakeBalls;
 
 private final IntakeBallsFront m_IntakeBalls;
 
+
 public class IntakeBallsFront extends CommandBase {
     public IntakeBallsFront(IntakeBalls IntakeBallsFront){
 
@@ -38,4 +39,9 @@ public class IntakeBallsFront extends CommandBase {
   @Override
   public void end(boolean interrupted){
     m_IntakeBallsFront.IntakeBallsFront
+  }
+
+  @Override
+  public boolean isFinished(){
+      return false;
   }
