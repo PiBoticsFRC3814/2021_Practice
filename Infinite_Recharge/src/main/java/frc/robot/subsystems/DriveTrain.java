@@ -24,8 +24,8 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
-  public void Drive(double y, double x) {
-    piboticsdrive.arcadeDrive(y, x);
+  public void Drive(double y, double x, boolean stick) {
+    piboticsdrive.arcadeDrive(y, x, stick);
   }
 
   public boolean isInverted(){

@@ -15,21 +15,19 @@ public class Limelight extends SubsystemBase {
   /**
    * Creates a new Limelight.
    */
-  public double[] data = {0,0,0,0,0,0};
-  public double x, yaw, z;
-  public Limelight() {
+  public double yaw, z, target;
 
+  public Limelight() {
   }
 
   public void getData() {
-    data = NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getDoubleArray(data);
-    x = data[0];
-    yaw = data[4];
-    z = data[2];
+    z = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0.0);
+    yaw = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0);
+    target = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0.0);
   }
 
   public boolean isValidTarget() {
-    if (x == 0.0 && yaw == 0.0 && z == 0.0)
+    if (target == 0.0)
     {
        return false;
     }
@@ -41,7 +39,8 @@ public class Limelight extends SubsystemBase {
 
   public void displayOutput() {
     getData();
-    SmartDashboard.putNumberArray("Camtran1", data);
+    SmartDashboard.putNumber("Target Area", z);
+    SmartDashboard.putNumber("Yaw", yaw);
   }
 
   @Override

@@ -52,7 +52,6 @@ public class RobotContainer {
     m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> m_joystick.getY(), () -> m_joystick.getX(), m_piboticsdrive));
     m_LimeLight.setDefaultCommand(new GetLimelight(m_LimeLight));
 
-
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -74,7 +73,9 @@ public class RobotContainer {
 
     FIntakeToggle.whenPressed(new FIntakeToggle(m_IntakeMaintain));
     RIntakeToggle.whenPressed(new RIntakeToggle(m_IntakeMaintain));
-    LimelightMove.whileHeld(new DriveLimelight(m_piboticsdrive,m_LimeLight));
+    LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight));
+    LimelightMove.whenReleased(new GetLimelight(m_LimeLight));
+
   }
 
 

@@ -18,7 +18,7 @@ public class DriveLimelight extends CommandBase {
 /** */
   Limelight m_LimeLight;
   DriveTrain m_PiboticsDrive;
-  double xs, ys, zs;
+  public static double ys, zs;
   public DriveLimelight(DriveTrain piboticsdrive, Limelight LimeLight) {
     m_PiboticsDrive = piboticsdrive;
     m_LimeLight = LimeLight;
@@ -35,48 +35,35 @@ public class DriveLimelight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_LimeLight.getData();
+    m_LimeLight.displayOutput();
     SmartDashboard.putBoolean("Target Acquired", m_LimeLight.isValidTarget());
-    if (m_LimeLight.x > 1)
-    {
-      xs = -0.3;
-    }
-    else if (m_LimeLight.x < -1)
-    {
-      xs = 0.3;
-    }
-    else
-    {
-      xs = 0;
-    }
-
     if (m_LimeLight.yaw > 2)
     {
-      ys = 0.1;
+      ys = 0.2;
     }
     else if (m_LimeLight.yaw < -2)
     {
-      ys = -0.1;
+      ys = -0.2;
     }
     else
     {
       ys = 0;
     }
-    
-    if (m_LimeLight.z < -20)
+    if (m_LimeLight.z < 1)
     {
-      zs = -0.2;
+      zs = -0.4;
     }
-    else if (m_LimeLight.z > -22)
+    else if (m_LimeLight.z > 2)
     {
-      zs = 0.2;
+      zs = 0.4;
     }
     else
     {
       zs = 0;
     }
-
-    m_PiboticsDrive.Drive(zs, ys);
+    m_PiboticsDrive.Drive(zs, ys, false);
+    SmartDashboard.putNumber("Zs", zs);
+    SmartDashboard.putNumber("Ys", ys);
   }
 
   // Called once the command ends or is interrupted.
