@@ -16,6 +16,7 @@ public class Limelight extends SubsystemBase {
    * Creates a new Limelight.
    */
   public double yaw, z, target;
+  public boolean position = false;
 
   public Limelight() {
   }
@@ -35,6 +36,10 @@ public class Limelight extends SubsystemBase {
     {
       return true;
     }
+  }
+
+  public boolean isInPosition() {
+    return position;
   }
 
   public void displayOutput() {

@@ -9,22 +9,27 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Shooter;
 
-public class DriveLimelight extends CommandBase {
+public class AutoShoot extends CommandBase {
   /**
-   * Creates a new LimeLight.
-/** */
+   * Creates a new AutoShoot.
+   */
   Limelight m_LimeLight;
+  Shooter m_Shooter;
   DriveTrain m_PiboticsDrive;
-  public static double ys, zs;
-  public DriveLimelight(DriveTrain piboticsdrive, Limelight LimeLight) {
-    m_PiboticsDrive = piboticsdrive;
-    m_LimeLight = LimeLight;
-    addRequirements(m_PiboticsDrive);
-    addRequirements(m_LimeLight);
+  public boolean isFinished = false;
+  public static double ys = 0.0, zs = 0.0;
+  public AutoShoot(Limelight limelight, Shooter shooter, DriveTrain drive) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_LimeLight = limelight;
+    m_Shooter = shooter;
+    m_PiboticsDrive = drive;
+    addRequirements(m_LimeLight);
+    addRequirements(m_Shooter);
+    addRequirements(m_PiboticsDrive);
   }
 
   // Called when the command is initially scheduled.
@@ -73,6 +78,17 @@ public class DriveLimelight extends CommandBase {
     m_PiboticsDrive.Drive(zs, ys, false);
     SmartDashboard.putNumber("Zs", zs);
     SmartDashboard.putNumber("Ys", ys);
+
+    m_Shooter.WheelsOn();
+
+    if (m_LimeLight.isInPosition() && m_Shooter.maxRPM())
+    {
+      //shoot
+    }
+    else
+    {
+      //noshoot
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -83,13 +99,6 @@ public class DriveLimelight extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (m_LimeLight.isValidTarget())
-    {
-      return false;
-    }
-    else
-    {
-      return true;
-    }
+    return false;
   }
 }

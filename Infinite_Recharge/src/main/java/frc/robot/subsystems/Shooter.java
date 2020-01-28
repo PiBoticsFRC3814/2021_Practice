@@ -26,6 +26,7 @@ public class Shooter extends SubsystemBase {
   private CANSparkMax m_motor;
   private CANPIDController m_pidController;
   private CANEncoder m_encoder;
+  public boolean shootable = false;
 
   public Shooter() {
      // initialize motor
@@ -73,18 +74,20 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("SetPoint", Constants.maxRPM);
     SmartDashboard.putNumber("ProcessVariable", m_encoder.getVelocity());
     
-    if (m_encoder.getVelocity() + 5 >= Constants.maxRPM && m_encoder.getVelocity() - 5 <= Constants.maxRPM) {
-      Constants.shootable = true;
+    if (m_encoder.getVelocity() + 5 >= Constants.maxRPM && m_encoder.getVelocity() - 5 <= Constants.maxRPM)
+    {
+      shootable = true;
     }
-    else {
-      Constants.shootable = false;
+    else
+    {
+      shootable = false;
     }
   }
   public void WheelsOff() {
     m_motor.set(0.0);
   }
   public boolean maxRPM() {
-    return Constants.shootable;
+    return shootable;
     //returns if the RPM is at proper speed
   }
 

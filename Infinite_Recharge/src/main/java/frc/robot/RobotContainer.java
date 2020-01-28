@@ -17,6 +17,7 @@ import frc.robot.commands.StopShoot;
 import frc.robot.commands.RIntakeToggle;
 import frc.robot.commands.FIntakeToggle;
 import frc.robot.commands.GetLimelight;
+import frc.robot.commands.AutoShoot;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
@@ -67,15 +68,20 @@ public class RobotContainer {
     final JoystickButton RIntakeToggle = new JoystickButton(m_joystick, 3);
     final JoystickButton shooter = new JoystickButton(m_joystick, 2);
     final JoystickButton LimelightMove =  new JoystickButton(m_joystick, 1);
+    final JoystickButton autoShoot = new JoystickButton(m_joystick, 4);
 
     shooter.whenPressed(new Shoot(m_shooter));
     shooter.whenReleased(new StopShoot(m_shooter));
 
     FIntakeToggle.whenPressed(new FIntakeToggle(m_IntakeMaintain));
     RIntakeToggle.whenPressed(new RIntakeToggle(m_IntakeMaintain));
+
     LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight));
     LimelightMove.whenReleased(new GetLimelight(m_LimeLight));
 
+    autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive));
+    autoShoot.whenReleased(new GetLimelight(m_LimeLight));
+    autoShoot.whenReleased(new StopShoot(m_shooter));
   }
 
 
