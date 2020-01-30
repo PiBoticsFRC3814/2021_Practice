@@ -18,6 +18,7 @@ import frc.robot.commands.RIntakeToggle;
 import frc.robot.commands.FIntakeToggle;
 import frc.robot.commands.FToggleFeet;
 import frc.robot.commands.GetLimelight;
+import frc.robot.commands.AutoShoot;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
@@ -55,7 +56,6 @@ public class RobotContainer {
     m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> m_joystick.getY(), () -> m_joystick.getX(), m_piboticsdrive));
     m_LimeLight.setDefaultCommand(new GetLimelight(m_LimeLight));
 
-
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -72,6 +72,7 @@ public class RobotContainer {
     final JoystickButton shooter = new JoystickButton(m_joystick, 2);
     final JoystickButton LimelightMove =  new JoystickButton(m_joystick, 1);
     final JoystickButton ToggleFeet = new JoystickButton(m_joystick, 6);
+    final JoystickButton autoShoot = new JoystickButton(m_joystick, 4);
 
     shooter.whenPressed(new Shoot(m_shooter));
     shooter.whenReleased(new StopShoot(m_shooter));
@@ -80,7 +81,13 @@ public class RobotContainer {
 
     FIntakeToggle.whenPressed(new FIntakeToggle(m_IntakeMaintain));
     RIntakeToggle.whenPressed(new RIntakeToggle(m_IntakeMaintain));
-    LimelightMove.whileHeld(new DriveLimelight(m_piboticsdrive,m_LimeLight));
+
+    LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight));
+    LimelightMove.whenReleased(new GetLimelight(m_LimeLight));
+
+    autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive));
+    autoShoot.whenReleased(new GetLimelight(m_LimeLight));
+    autoShoot.whenReleased(new StopShoot(m_shooter));
   }
 
 

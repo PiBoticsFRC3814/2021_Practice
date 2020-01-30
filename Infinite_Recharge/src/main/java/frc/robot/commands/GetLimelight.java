@@ -15,7 +15,8 @@ public class GetLimelight extends CommandBase {
   /**
    * Creates a new GetLimelight.
    */
-  Limelight m_LimeLight;
+  private final Limelight m_LimeLight;
+
   public GetLimelight(Limelight LimeLight) {
     m_LimeLight = LimeLight;
     addRequirements(m_LimeLight);
@@ -31,6 +32,7 @@ public class GetLimelight extends CommandBase {
   @Override
   public void execute() {
     m_LimeLight.getData();
+    m_LimeLight.displayOutput();
     SmartDashboard.putBoolean("Target Acquired", m_LimeLight.isValidTarget());
   }
 

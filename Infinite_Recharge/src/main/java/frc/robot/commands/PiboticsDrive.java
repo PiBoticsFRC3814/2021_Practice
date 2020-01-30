@@ -35,13 +35,13 @@ public class PiboticsDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivetrain.Drive(m_x.getAsDouble(), m_y.getAsDouble());
+    m_drivetrain.Drive(m_x.getAsDouble(), m_y.getAsDouble(), true);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_drivetrain.Drive(0, 0);
+    //m_drivetrain.Drive(0, 0);
   }
 
   // Returns true when the command should end.
