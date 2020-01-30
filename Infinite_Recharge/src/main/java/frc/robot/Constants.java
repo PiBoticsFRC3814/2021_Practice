@@ -21,6 +21,13 @@ public final class Constants {
     public static final int frontIntake = 10;
     public static final int rearIntake = 11;
 
+//pneumatic IDs
+    public static final int PCM1 = 0;
+    public static final int frontExtend = 0;
+    public static final int frontRetract = 1;
+    public static final int rearExtend = 2;
+    public static final int rearRetract = 3;
+
 //motor Speeds
     public static final double maintainSpeed = 0.5;
     public static final double ballIntakeSpeed = 0.75;

@@ -16,11 +16,13 @@ import frc.robot.commands.Shoot;
 import frc.robot.commands.StopShoot;
 import frc.robot.commands.RIntakeToggle;
 import frc.robot.commands.FIntakeToggle;
+import frc.robot.commands.FToggleFeet;
 import frc.robot.commands.GetLimelight;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.IntakeMaintain;
+import frc.robot.subsystems.*;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -42,6 +44,7 @@ public class RobotContainer {
   private final IntakeMaintain m_IntakeMaintain = new IntakeMaintain();
   private final Joystick m_joystick = new Joystick(0);
   private final Limelight m_LimeLight = new Limelight();
+  private final ToggleFeet m_ToggleFeet = new ToggleFeet();
 
 
   /**
@@ -68,9 +71,12 @@ public class RobotContainer {
     final JoystickButton RIntakeToggle = new JoystickButton(m_joystick, 3);
     final JoystickButton shooter = new JoystickButton(m_joystick, 2);
     final JoystickButton LimelightMove =  new JoystickButton(m_joystick, 1);
+    final JoystickButton ToggleFeet = new JoystickButton(m_joystick, 6);
 
     shooter.whenPressed(new Shoot(m_shooter));
     shooter.whenReleased(new StopShoot(m_shooter));
+
+    ToggleFeet.whenPressed(new FToggleFeet(m_ToggleFeet));
 
     FIntakeToggle.whenPressed(new FIntakeToggle(m_IntakeMaintain));
     RIntakeToggle.whenPressed(new RIntakeToggle(m_IntakeMaintain));
