@@ -8,40 +8,33 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.ToggleFeet;
+import frc.robot.subsystems.ClimbMotor;
 
-public class FToggleFeet extends CommandBase {
+public class ClimbUp extends CommandBase {
+  
   /**
-   * Creates a new FToggleFeet.
+   * Creates a new ClimbUp.
    */
+  private final ClimbMotor m_climbUp;
 
-  private final ToggleFeet m_ToggleFeet;
 
-  public FToggleFeet(ToggleFeet m_Toggle) {
+
+  public ClimbUp(ClimbMotor climbMotor) {
     // Use addRequirements() here to declare subsystem dependencies.
-
-    m_ToggleFeet = m_Toggle;
-
-    addRequirements(m_ToggleFeet);
+    m_climbUp = climbMotor;
+    addRequirements(m_climbUp);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(!m_ToggleFeet.frontDirection)
-    {
-      m_ToggleFeet.FrontExtend();
-    }
-    else
-    {
-      m_ToggleFeet.FrontRetract();
-    }
+    m_climbUp.goUp();
   }
 
   // Called once the command ends or is interrupted.
@@ -52,6 +45,6 @@ public class FToggleFeet extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

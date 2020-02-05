@@ -9,25 +9,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.DriveLimelight;
-import frc.robot.commands.PiboticsDrive;
-import frc.robot.commands.Shoot;
-import frc.robot.commands.StopShoot;
-import frc.robot.commands.RIntakeToggle;
-import frc.robot.commands.FIntakeToggle;
-import frc.robot.commands.FToggleFeet;
-import frc.robot.commands.GetLimelight;
-import frc.robot.commands.AutoShoot;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.IntakeMaintain;
+import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.Constants;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
+
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -43,21 +33,26 @@ public class RobotContainer {
   private final DriveTrain m_piboticsdrive = new DriveTrain();
   private final Shooter m_shooter = new Shooter();
   private final IntakeMaintain m_IntakeMaintain = new IntakeMaintain();
-  private final Joystick m_joystick = new Joystick(0);
   private final Limelight m_LimeLight = new Limelight();
-  private final ToggleFeet m_ToggleFeet = new ToggleFeet();
+  private final ClimbMotor m_Climb = new ClimbMotor();
 
+  private final Joystick driverStick = new Joystick(Constants.oi_Driver);
+  private final Joystick buttonStick = new Joystick(Constants.oi_Operator);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
 
-    m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> m_joystick.getY(), () -> m_joystick.getX(), m_piboticsdrive));
+    m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> driverStick.getY(), () -> driverStick.getX(), m_piboticsdrive));
     m_LimeLight.setDefaultCommand(new GetLimelight(m_LimeLight));
 
     // Configure the button bindings
     configureButtonBindings();
+
+
+  
+    
   }
 
   /**
@@ -67,20 +62,31 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    final JoystickButton FIntakeToggle = new JoystickButton(m_joystick, 5);
-    final JoystickButton RIntakeToggle = new JoystickButton(m_joystick, 3);
-    final JoystickButton shooter = new JoystickButton(m_joystick, 2);
-    final JoystickButton LimelightMove =  new JoystickButton(m_joystick, 1);
-    final JoystickButton ToggleFeet = new JoystickButton(m_joystick, 6);
-    final JoystickButton autoShoot = new JoystickButton(m_joystick, 4);
+    //joystick buttons
+    final JoystickButton FIntakeToggle = new JoystickButton(driverStick, 7);
+    final JoystickButton shooter = new JoystickButton(driverStick, 2);
+    final JoystickButton LimelightMove =  new JoystickButton(driverStick, 12);
+    final JoystickButton autoShoot = new JoystickButton(driverStick, 6);
+
+    //fightstick buttons
+    final JoystickButton climbUp = new JoystickButton(buttonStick, 3);
+    final JoystickButton climbDown = new JoystickButton(buttonStick, 1);
+    final JoystickButton balanceLeft = new JoystickButton(buttonStick, 9);
+    final JoystickButton balanceRight = new JoystickButton(buttonStick, 10);
+
+    
 
     shooter.whenPressed(new Shoot(m_shooter));
     shooter.whenReleased(new StopShoot(m_shooter));
 
-    ToggleFeet.whenPressed(new FToggleFeet(m_ToggleFeet));
+    climbUp.whenPressed(new ClimbUp(m_Climb));
+    climbUp.whenReleased(new ClimbStop(m_Climb));
+    climbDown.whenPressed(new ClimbDown(m_Climb));
+    climbDown.whenReleased(new ClimbStop(m_Climb));
+
 
     FIntakeToggle.whenPressed(new FIntakeToggle(m_IntakeMaintain));
-    RIntakeToggle.whenPressed(new RIntakeToggle(m_IntakeMaintain));
+    
 
     LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight));
     LimelightMove.whenReleased(new GetLimelight(m_LimeLight));

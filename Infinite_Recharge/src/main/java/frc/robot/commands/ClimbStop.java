@@ -8,39 +8,33 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeMaintain;
+import frc.robot.subsystems.ClimbMotor;
 
-public class RIntakeToggle extends CommandBase {
+public class ClimbStop extends CommandBase {
+  
   /**
-   * Creates a new IntakeToggle.
+   * Creates a new ClimbUp.
    */
-  private final IntakeMaintain m_IntakeMaintain;
-  public RIntakeToggle(IntakeMaintain intakeMaintain) {
+  private final ClimbMotor m_climbStop;
 
-    m_IntakeMaintain = intakeMaintain;
-    
-    addRequirements(m_IntakeMaintain);
+
+
+  public ClimbStop(ClimbMotor climbMotor) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_climbStop = climbMotor;
+    addRequirements(m_climbStop);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    if(!m_IntakeMaintain.RToggle)
-    {
-      m_IntakeMaintain.ballIntakeRear();
-    }
-    else
-    {
-      m_IntakeMaintain.maintainIntakeRear();
-    }
-
+    m_climbStop.stopClimb();
   }
 
   // Called once the command ends or is interrupted.

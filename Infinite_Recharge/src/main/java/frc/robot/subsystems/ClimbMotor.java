@@ -9,32 +9,36 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.drive.*;
 import frc.robot.Constants;
 
-public class DriveTrain extends SubsystemBase {
+
+public class ClimbMotor extends SubsystemBase {
+
+  private static final WPI_TalonSRX climbMotor = new WPI_TalonSRX(Constants.cMotor);
+  
   /**
-   * Creates a new DriveTrain.
+   * Creates a new ClimbMotor.
    */
-  private static final WPI_TalonSRX leftmotor = new WPI_TalonSRX(Constants.leftDrive);
-  private static final WPI_TalonSRX rightmotor = new WPI_TalonSRX(Constants.rightDrive);
+  public ClimbMotor() {
 
-  private static final DifferentialDrive piboticsdrive = new DifferentialDrive(leftmotor, rightmotor);
-
-  public DriveTrain() {
-
-  }
-
-  public void Drive(double y, double x, boolean stick) {
-    piboticsdrive.arcadeDrive(y, x, stick);
-  }
-
-  public boolean isInverted(){
-    return leftmotor.getInverted();
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+  public void goUp(){
+      climbMotor.set(Constants.upSpeed);
+
+  }
+
+  public void goDown(){
+      climbMotor.set(Constants.downSpeed);
+
+  }
+
+  public void stopClimb(){
+      climbMotor.set(0.0);
+
   }
 }
