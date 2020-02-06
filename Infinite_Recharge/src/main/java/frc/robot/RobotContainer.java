@@ -35,6 +35,7 @@ public class RobotContainer {
   private final IntakeMaintain m_IntakeMaintain = new IntakeMaintain();
   private final Limelight m_LimeLight = new Limelight();
   private final ClimbMotor m_Climb = new ClimbMotor();
+  private final ControlPanel m_ControlPanel = new ControlPanel();
 
   private final Joystick driverStick = new Joystick(Constants.oi_Driver);
   private final Joystick buttonStick = new Joystick(Constants.oi_Operator);
@@ -46,6 +47,7 @@ public class RobotContainer {
 
     m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> driverStick.getY(), () -> driverStick.getX(), m_piboticsdrive));
     m_LimeLight.setDefaultCommand(new GetLimelight(m_LimeLight));
+    m_ControlPanel.setDefaultCommand(new ReadColor(m_ControlPanel));
 
     // Configure the button bindings
     configureButtonBindings();
