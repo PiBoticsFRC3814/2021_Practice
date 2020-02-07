@@ -24,7 +24,9 @@ public class RotationControl extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_ControlPanel.rotFinish = false;  }
+    m_ControlPanel.rotFinish = false;  
+    m_ControlPanel.counter = 0;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -41,7 +43,6 @@ public class RotationControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    m_ControlPanel.ControlPanelMotor.set(0.0);
     return m_ControlPanel.rotFinish;
   }
 }

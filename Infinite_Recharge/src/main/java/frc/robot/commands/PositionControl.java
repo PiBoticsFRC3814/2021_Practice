@@ -31,7 +31,6 @@ public class PositionControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_ControlPanel.PutColorValue();
     m_ControlPanel.Position();
   }
 
@@ -43,7 +42,6 @@ public class PositionControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    m_ControlPanel.ControlPanelMotor.set(0.0);
-    return m_ControlPanel.posFinish;
+        return m_ControlPanel.posFinish;
   }
 }

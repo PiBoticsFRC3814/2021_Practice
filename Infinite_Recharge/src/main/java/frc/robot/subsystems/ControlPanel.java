@@ -93,7 +93,7 @@ public class ControlPanel extends SubsystemBase {
 
   public void Position() {
     PutColorValue();
-    if (fmsData == colorCode)
+    if (String.valueOf(fmsData) == String.valueOf(colorCode))
     {
       ControlPanelMotor.set(0.0);
       posFinish = true;
@@ -102,31 +102,35 @@ public class ControlPanel extends SubsystemBase {
     {
       ControlPanelMotor.set(1.0);
     }
+    SmartDashboard.putString("FMSDATA", fmsData);
   }
 
 
   public void Rotation() {
     PutColorValue();
-    if (colorCode == "R")
+    if (String.valueOf(colorCode) == "R")
     {
       r = true;
     }
-    else if (colorCode == "G")
+    else if (String.valueOf(colorCode) == "G")
     {
       g = true;
     }
-    else if (colorCode == "B")
+    else if (String.valueOf(colorCode) == "B")
     {
       b = true;
     }
-    else if (colorCode == "Y")
+    else if (String.valueOf(colorCode) == "Y")
     {
       y = true;
     }
-    else
-    {
-      //do nothing
-    }
+    
+
+    SmartDashboard.putBoolean("rbool", r);
+    SmartDashboard.putBoolean("gbool", g);
+    SmartDashboard.putBoolean("bbool", b);
+    SmartDashboard.putBoolean("ybool", y);
+    SmartDashboard.putNumber("Counter", counter);
 
     if (r && g && b && y)
     {
@@ -137,7 +141,7 @@ public class ControlPanel extends SubsystemBase {
       counter++;
     }
 
-    if (counter < 6)
+    if (counter <= 7)
     {
       ControlPanelMotor.set(1.0);
     }
