@@ -38,6 +38,8 @@ public final class Constants {
     public static final double ballIntakeSpeed = 0.75;
     public static final double upSpeed = 0.5;
     public static final double downSpeed = -0.5;
+    public static final double leftSpeed = 0.25;
+    public static final double rightSpeed = -0.25;
     
 
     public static final int shooterMotor = 20;

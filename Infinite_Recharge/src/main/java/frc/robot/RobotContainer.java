@@ -35,6 +35,7 @@ public class RobotContainer {
   private final IntakeMaintain m_IntakeMaintain = new IntakeMaintain();
   private final Limelight m_LimeLight = new Limelight();
   private final ClimbMotor m_Climb = new ClimbMotor();
+  private final BalanceMotor m_Balance = new BalanceMotor();
   private final ControlPanel m_ControlPanel = new ControlPanel();
 
   private final Joystick driverStick = new Joystick(Constants.oi_Driver);
@@ -86,6 +87,11 @@ public class RobotContainer {
     climbUp.whenReleased(new ClimbStop(m_Climb));
     climbDown.whenPressed(new ClimbDown(m_Climb));
     climbDown.whenReleased(new ClimbStop(m_Climb));
+
+    balanceLeft.whenPressed(new BalanceLeft(m_Balance));
+    balanceLeft.whenReleased(new StopBalance(m_Balance));
+    balanceRight.whenPressed(new BalanceRight(m_Balance));
+    balanceRight.whenReleased(new StopBalance(m_Balance));
 
 
     FIntakeToggle.whenPressed(new FIntakeToggle(m_IntakeMaintain));
