@@ -24,6 +24,7 @@ public final class Constants {
     public static final int bMotor = 21;
     public static final int leftDrive = 1;
     public static final int rightDrive = 2;
+    public static final int ControlPanelMotor = 30;
 
 //pneumatic IDs
     public static final int PCM1 = 0;

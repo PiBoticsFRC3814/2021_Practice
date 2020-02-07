@@ -47,7 +47,6 @@ public class RobotContainer {
 
     m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> driverStick.getY(), () -> driverStick.getX(), m_piboticsdrive));
     m_LimeLight.setDefaultCommand(new GetLimelight(m_LimeLight));
-    m_ControlPanel.setDefaultCommand(new ReadColor(m_ControlPanel));
 
     // Configure the button bindings
     configureButtonBindings();
@@ -69,6 +68,8 @@ public class RobotContainer {
     final JoystickButton shooter = new JoystickButton(driverStick, 2);
     final JoystickButton LimelightMove =  new JoystickButton(driverStick, 12);
     final JoystickButton autoShoot = new JoystickButton(driverStick, 6);
+    final JoystickButton Position = new JoystickButton(driverStick, 11);
+    final JoystickButton Rotation = new JoystickButton(driverStick, 12);
 
     //fightstick buttons
     final JoystickButton climbUp = new JoystickButton(buttonStick, 3);
@@ -96,6 +97,9 @@ public class RobotContainer {
     autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive));
     autoShoot.whenReleased(new GetLimelight(m_LimeLight));
     autoShoot.whenReleased(new StopShoot(m_shooter));
+
+    Position.whenPressed(new PositionControl(m_ControlPanel));
+    Rotation.whenPressed(new RotationControl(m_ControlPanel));
   }
 
 
