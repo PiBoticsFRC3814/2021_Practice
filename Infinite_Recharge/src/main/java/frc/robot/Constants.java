@@ -22,6 +22,7 @@ public final class Constants {
     public static final int rearIntake = 11;
     public static final int cMotor = 20;
     public static final int bMotor = 21;
+    public static final int blMotor = 22;
     public static final int leftDrive = 30;
     public static final int rightDrive = 2;
     public static final int ControlPanelMotor = 1;

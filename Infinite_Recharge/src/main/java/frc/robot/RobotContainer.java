@@ -36,6 +36,7 @@ public class RobotContainer {
   private final Limelight m_LimeLight = new Limelight();
   private final ClimbMotor m_Climb = new ClimbMotor();
   private final BalanceMotor m_Balance = new BalanceMotor();
+  private final BlockingMotor m_Block = new BlockingMotor();
   private final ControlPanel m_ControlPanel = new ControlPanel();
 
   private final Joystick driverStick = new Joystick(Constants.oi_Driver);
