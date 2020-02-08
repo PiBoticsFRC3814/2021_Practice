@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 import com.revrobotics.ColorSensorV3;
+
+import java.util.Objects;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
@@ -93,7 +96,7 @@ public class ControlPanel extends SubsystemBase {
 
   public void Position() {
     PutColorValue();
-    if (String.valueOf(fmsData) == String.valueOf(colorCode))
+    if (Objects.equals(fmsData,colorCode))
     {
       ControlPanelMotor.set(0.0);
       posFinish = true;
@@ -108,19 +111,19 @@ public class ControlPanel extends SubsystemBase {
 
   public void Rotation() {
     PutColorValue();
-    if (String.valueOf(colorCode) == "R")
+    if (Objects.equals(colorCode,"R"))
     {
       r = true;
     }
-    else if (String.valueOf(colorCode) == "G")
+    else if (Objects.equals(colorCode,"G"))
     {
       g = true;
     }
-    else if (String.valueOf(colorCode) == "B")
+    else if (Objects.equals(colorCode,"B"))
     {
       b = true;
     }
-    else if (String.valueOf(colorCode) == "Y")
+    else if (Objects.equals(colorCode,"Y"))
     {
       y = true;
     }
@@ -141,7 +144,7 @@ public class ControlPanel extends SubsystemBase {
       counter++;
     }
 
-    if (counter <= 7)
+    if (counter <= 8)
     {
       ControlPanelMotor.set(1.0);
     }

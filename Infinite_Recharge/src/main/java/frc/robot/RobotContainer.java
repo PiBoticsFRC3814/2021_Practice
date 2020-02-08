@@ -67,10 +67,11 @@ public class RobotContainer {
     //joystick buttons
     final JoystickButton FIntakeToggle = new JoystickButton(driverStick, 7);
     final JoystickButton shooter = new JoystickButton(driverStick, 2);
-    final JoystickButton LimelightMove =  new JoystickButton(driverStick, 12);
+    final JoystickButton LimelightMove =  new JoystickButton(driverStick, 10);
     final JoystickButton autoShoot = new JoystickButton(driverStick, 6);
     final JoystickButton Position = new JoystickButton(driverStick, 11);
     final JoystickButton Rotation = new JoystickButton(driverStick, 12);
+    final JoystickButton ToggleLight = new JoystickButton(driverStick, 1);
 
     //fightstick buttons
     final JoystickButton climbUp = new JoystickButton(buttonStick, 3);
@@ -81,7 +82,7 @@ public class RobotContainer {
     
 
     shooter.whenPressed(new Shoot(m_shooter));
-    shooter.whenReleased(new StopShoot(m_shooter));
+    shooter.whenReleased(new StopShoot(m_shooter,m_LimeLight));
 
     climbUp.whenPressed(new ClimbUp(m_Climb));
     climbUp.whenReleased(new ClimbStop(m_Climb));
@@ -102,10 +103,12 @@ public class RobotContainer {
 
     autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive));
     autoShoot.whenReleased(new GetLimelight(m_LimeLight));
-    autoShoot.whenReleased(new StopShoot(m_shooter));
+    autoShoot.whenReleased(new StopShoot(m_shooter,m_LimeLight));
 
     Position.whenPressed(new PositionControl(m_ControlPanel));
     Rotation.whenPressed(new RotationControl(m_ControlPanel));
+    ToggleLight.whenPressed(new ToggleLimelight(m_LimeLight));
+    ToggleLight.whenReleased(new GetLimelight(m_LimeLight));
   }
 
 

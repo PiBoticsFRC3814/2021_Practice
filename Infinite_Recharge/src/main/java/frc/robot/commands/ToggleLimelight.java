@@ -9,21 +9,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Shooter;
 
-public class StopShoot extends CommandBase {
+public class ToggleLimelight extends CommandBase {
   /**
-   * Creates a new StopShoot.
+   * Creates a new ToggleLimelight.
    */
-  private final Shooter m_shooter;
-  private final Limelight m_Limelight;
-
-  public StopShoot(Shooter piboticsshooter, Limelight limelight) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    m_shooter = piboticsshooter;
+  Limelight m_Limelight;
+  public ToggleLimelight(Limelight limelight) {
     m_Limelight = limelight;
-    addRequirements(m_shooter);
     addRequirements(m_Limelight);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -34,8 +29,14 @@ public class StopShoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shooter.WheelsOff();
-    m_Limelight.offLight();
+    if (m_Limelight.light == true)
+    {
+      m_Limelight.offLight();
+    }
+    else
+    {
+      m_Limelight.onLight();
+    }
   }
 
   // Called once the command ends or is interrupted.

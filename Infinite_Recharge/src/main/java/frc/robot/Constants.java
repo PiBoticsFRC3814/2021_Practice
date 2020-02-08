@@ -22,9 +22,9 @@ public final class Constants {
     public static final int rearIntake = 11;
     public static final int cMotor = 20;
     public static final int bMotor = 21;
-    public static final int leftDrive = 30;
+    public static final int leftDrive = 1;
     public static final int rightDrive = 2;
-    public static final int ControlPanelMotor = 1;
+    public static final int ControlPanelMotor = 30;
 
 //pneumatic IDs
     public static final int PCM1 = 0;
@@ -50,7 +50,7 @@ public final class Constants {
     public static final double kFF = 0;
     public static final double kMaxOutput = 1;
     public static final double kMinOutput = -1;
-    public static final double maxRPM = 3814;
+    public static final double maxRPM = -5000;
     public static boolean shootable = false;
 
     public static final int oi_Driver = 0;

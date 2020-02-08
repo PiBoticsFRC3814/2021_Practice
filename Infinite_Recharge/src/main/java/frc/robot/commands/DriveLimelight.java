@@ -35,6 +35,7 @@ public class DriveLimelight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    m_LimeLight.onLight();
     m_LimeLight.displayOutput();
     SmartDashboard.putBoolean("Target Acquired", m_LimeLight.isValidTarget());
     if (m_LimeLight.yaw > 2)
@@ -89,6 +90,7 @@ public class DriveLimelight extends CommandBase {
     }
     else
     {
+      m_LimeLight.offLight();
       return true;
     }
   }
