@@ -24,7 +24,7 @@ public class PositionControl extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_ControlPanel.posFinish = false;
+    ControlPanel.posFinish = false;
     m_ControlPanel.GetFMS();
   }
 
@@ -42,6 +42,6 @@ public class PositionControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-        return m_ControlPanel.posFinish;
+        return ControlPanel.posFinish;
   }
 }
