@@ -20,10 +20,10 @@ public final class Constants {
 //talon IDs
     public static final int frontIntake = 10;
     public static final int rearIntake = 11;
-    public static final int cMotor = 20;
-    public static final int bMotor = 21;
+    public static final int cMotor = 40;
+    public static final int bMotor = 41;
     public static final int leftDrive = 1;
-    public static final int blMotor = 22;
+    public static final int blMotor = 50;
     public static final int rightDrive = 2;
     public static final int ControlPanelMotor = 30;
     public static final int shooterMotor = 20;
@@ -36,12 +36,14 @@ public final class Constants {
     public static final int rearRetract = 3;
 
 //motor Speeds
-    public static final double maintainSpeed = 0.5;
+    public static final double maintainSpeed = 0.0;
     public static final double ballIntakeSpeed = 0.75;
     public static final double upSpeed = 0.5;
     public static final double downSpeed = -0.5;
-    public static final double leftSpeed = 0.25;
-    public static final double rightSpeed = -0.25;
+    public static final double leftSpeed = 1;
+    public static final double rightSpeed = -1;
+    public static final double gateSpeed = 0.1;
+    public static final double gateReverse = -0.1;
     
 
     public static final double kP = 5e-5;

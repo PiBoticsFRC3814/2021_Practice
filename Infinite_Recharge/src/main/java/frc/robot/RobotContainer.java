@@ -75,6 +75,7 @@ public class RobotContainer {
     final JoystickButton autoShoot = new JoystickButton(driverStick, 6);
     final JoystickButton Position = new JoystickButton(driverStick, 11);
     final JoystickButton Rotation = new JoystickButton(driverStick, 12);
+    final JoystickButton gateTurn = new JoystickButton(driverStick, 13);
     final JoystickButton ToggleLight = new JoystickButton(driverStick, 1);
 
     //fightstick buttons
@@ -97,6 +98,9 @@ public class RobotContainer {
     balanceLeft.whenReleased(new StopBalance(m_Balance));
     balanceRight.whenPressed(new BalanceRight(m_Balance));
     balanceRight.whenReleased(new StopBalance(m_Balance));
+
+    gateTurn.whenPressed(new GateTurn(m_Block));
+    gateTurn.whenReleased(new GateReturn(m_Block));
 
 
     FIntakeToggle.whenPressed(new FIntakeToggle(m_IntakeMaintain));
