@@ -41,6 +41,8 @@ public final class Constants {
     public static final double downSpeed = -0.5;
     public static final double leftSpeed = 0.25;
     public static final double rightSpeed = -0.25;
+    public static final double gateSpeed = 0.1;
+    public static final double gateReverse = -0.1;
     
 
     public static final int shooterMotor = 20;

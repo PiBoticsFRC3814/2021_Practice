@@ -25,9 +25,11 @@ public class BlockingMotor extends SubsystemBase {
     // This method will be called once per scheduler run
   }
   public void fire() { 
-    //complete rotation?
-    //set speed? 
-    //button = fire once?
+    blockingMotor.set(Constants.gateSpeed);
+
   }
   //^^^ is what it would do to shoot ^^^
+  public void safety(){
+    blockingMotor.set(Constants.gateReverse);
+  }
 }
