@@ -17,6 +17,7 @@ public class Limelight extends SubsystemBase {
    */
   public double yaw, z, target;
   public boolean position = false;
+  public boolean light = false;
 
   public Limelight() {
   }
@@ -36,6 +37,17 @@ public class Limelight extends SubsystemBase {
     {
       return true;
     }
+  }
+
+  public void offLight() {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+    light = false;
+  }
+
+  public void onLight() {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+    light = true;
+
   }
 
   public boolean isInPosition() {

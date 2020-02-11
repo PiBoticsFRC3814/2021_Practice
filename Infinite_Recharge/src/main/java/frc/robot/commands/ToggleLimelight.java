@@ -8,30 +8,35 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ControlPanel;
+import frc.robot.subsystems.Limelight;
 
-public class PositionControl extends CommandBase {
+public class ToggleLimelight extends CommandBase {
   /**
-   * Creates a new ReadColor.
+   * Creates a new ToggleLimelight.
    */
-  ControlPanel m_ControlPanel;
-  public PositionControl(ControlPanel panel) {
-    m_ControlPanel = panel;
-    addRequirements(m_ControlPanel);
+  Limelight m_Limelight;
+  public ToggleLimelight(Limelight limelight) {
+    m_Limelight = limelight;
+    addRequirements(m_Limelight);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ControlPanel.posFinish = false;
-    m_ControlPanel.GetFMS();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_ControlPanel.Position();
+    if (m_Limelight.light == true)
+    {
+      m_Limelight.offLight();
+    }
+    else
+    {
+      m_Limelight.onLight();
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -42,6 +47,6 @@ public class PositionControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-        return ControlPanel.posFinish;
+    return true;
   }
 }
