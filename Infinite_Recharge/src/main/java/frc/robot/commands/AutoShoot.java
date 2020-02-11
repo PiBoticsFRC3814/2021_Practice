@@ -9,7 +9,9 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.BlockingMotor;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.IntakeMaintain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 
@@ -20,16 +22,22 @@ public class AutoShoot extends CommandBase {
   Limelight m_LimeLight;
   Shooter m_Shooter;
   DriveTrain m_PiboticsDrive;
+  IntakeMaintain m_Intake;
+  BlockingMotor m_Gate;
   public boolean isFinished = false;
   public static double ys = 0.0, zs = 0.0;
-  public AutoShoot(Limelight limelight, Shooter shooter, DriveTrain drive) {
+  public AutoShoot(Limelight limelight, Shooter shooter, DriveTrain drive, IntakeMaintain intake, BlockingMotor gate) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_LimeLight = limelight;
     m_Shooter = shooter;
     m_PiboticsDrive = drive;
+    m_Intake = intake;
+    m_Gate = gate;
     addRequirements(m_LimeLight);
     addRequirements(m_Shooter);
     addRequirements(m_PiboticsDrive);
+    addRequirements(m_Intake);
+    addRequirements(m_Gate);
   }
 
   // Called when the command is initially scheduled.

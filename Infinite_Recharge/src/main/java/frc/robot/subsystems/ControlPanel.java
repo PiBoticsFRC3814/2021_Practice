@@ -103,7 +103,7 @@ public class ControlPanel extends SubsystemBase {
     }
     else
     {
-      ControlPanelMotor.set(1.0);
+      ControlPanelMotor.set(0.5);
     }
     SmartDashboard.putString("FMSDATA", fmsData);
   }
@@ -153,6 +153,10 @@ public class ControlPanel extends SubsystemBase {
       ControlPanelMotor.set(0.0);
       rotFinish = true;
     }
+  }
+
+  public void stop() {
+    ControlPanelMotor.set(0.0);
   }
 
   @Override

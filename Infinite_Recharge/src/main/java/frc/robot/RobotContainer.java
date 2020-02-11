@@ -14,6 +14,7 @@ import frc.robot.subsystems.*;
 import frc.robot.Constants;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -41,6 +42,8 @@ public class RobotContainer {
 
   private final Joystick driverStick = new Joystick(Constants.oi_Driver);
   private final Joystick buttonStick = new Joystick(Constants.oi_Operator);
+
+  private final CommandBase m_autonomousCommand = new Autonomous1(m_piboticsdrive,m_LimeLight,m_shooter,m_IntakeMaintain,m_Block);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -102,12 +105,15 @@ public class RobotContainer {
     LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight));
     LimelightMove.whenReleased(new GetLimelight(m_LimeLight));
 
-    autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive));
+    autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive,m_IntakeMaintain,m_Block));
     autoShoot.whenReleased(new GetLimelight(m_LimeLight));
     autoShoot.whenReleased(new StopShoot(m_shooter,m_LimeLight));
 
     Position.whenPressed(new PositionControl(m_ControlPanel));
+    Position.whenReleased(new StopControlPanel(m_ControlPanel));
     Rotation.whenPressed(new RotationControl(m_ControlPanel));
+    Rotation.whenReleased(new StopControlPanel(m_ControlPanel));
+
     ToggleLight.whenPressed(new ToggleLimelight(m_LimeLight));
     ToggleLight.whenReleased(new GetLimelight(m_LimeLight));
   }
@@ -120,6 +126,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return m_autonomousCommand;
   }
 }
