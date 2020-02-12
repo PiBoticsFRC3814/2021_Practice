@@ -7,25 +7,19 @@
 
 package frc.robot.commands;
 
-
-import java.sql.Time;
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BlockingMotor;
-import frc.robot.Robot;
+import frc.robot.subsystems.IntakeMaintain;
 
-public class GateTurn extends CommandBase {
-  private final BlockingMotor m_gateTurn;
+public class IntakeOff extends CommandBase {
   /**
-   * Creates a new BlockingMotor.
+   * Creates a new IntakeOff.
    */
-  public GateTurn(BlockingMotor blockingMotor) {
-    m_gateTurn = blockingMotor;
-    addRequirements(m_gateTurn);
+  IntakeMaintain m_IntakeMaintain;
+  public IntakeOff(IntakeMaintain intakeMaintain) {
+    m_IntakeMaintain = intakeMaintain;
     
-   // Use addRequirements() here to declare subsystem dependencies.
-    
+    addRequirements(m_IntakeMaintain);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -36,7 +30,7 @@ public class GateTurn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_gateTurn.fire();
+    m_IntakeMaintain.intakeOff();
   }
 
   // Called once the command ends or is interrupted.

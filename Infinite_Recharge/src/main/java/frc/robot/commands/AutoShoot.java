@@ -92,11 +92,11 @@ public class AutoShoot extends CommandBase {
 
     if (m_LimeLight.isInPosition() && m_Shooter.maxRPM())
     {
-      //shoot
+      m_Intake.intakeOn();
     }
     else
     {
-      //noshoot
+      m_Intake.intakeOff();
     }
   }
 

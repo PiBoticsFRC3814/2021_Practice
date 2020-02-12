@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 
 
 
@@ -69,7 +70,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //joystick buttons
-    final JoystickButton FIntakeToggle = new JoystickButton(driverStick, 7);
+    final JoystickButton Intake = new JoystickButton(driverStick, 7);
     final JoystickButton shooter = new JoystickButton(driverStick, 2);
     final JoystickButton LimelightMove =  new JoystickButton(driverStick, 10);
     final JoystickButton autoShoot = new JoystickButton(driverStick, 6);
@@ -84,6 +85,8 @@ public class RobotContainer {
     final JoystickButton balanceLeft = new JoystickButton(buttonStick, 9);
     final JoystickButton balanceRight = new JoystickButton(buttonStick, 10);
 
+
+    
     
 
     shooter.whenPressed(new Shoot(m_shooter,driverStick));
@@ -103,7 +106,8 @@ public class RobotContainer {
     gateTurn.whenReleased(new GateReturn(m_Block));
 
 
-    FIntakeToggle.whenPressed(new FIntakeToggle(m_IntakeMaintain));
+    Intake.whenPressed(new IntakeOn(m_IntakeMaintain));
+    Intake.whenReleased(new IntakeOff(m_IntakeMaintain));
     
 
     LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight));
