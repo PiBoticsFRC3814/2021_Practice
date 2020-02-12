@@ -19,8 +19,8 @@ public class Autonomous1 extends SequentialCommandGroup {
    */
   public Autonomous1(DriveTrain piboticsDrive, Limelight limeLight, Shooter piboticsShooter, IntakeMaintain intake, BlockingMotor gate) {
    addCommands(
-      new AutoShoot(piboticsDrive, limeLight, piboticsShooter, intake, gate),
-      new PiboticsDrive(0,1,piboticsDrive)
+     //new AutoShoot(piboticsDrive, limeLight, piboticsShooter, intake, gate),
+      //new PiboticsDrive(0,1,piboticsDrive)
     );
   }
 }

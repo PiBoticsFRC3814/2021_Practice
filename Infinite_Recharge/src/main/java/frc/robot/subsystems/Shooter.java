@@ -27,6 +27,7 @@ public class Shooter extends SubsystemBase {
   private CANPIDController m_pidController;
   private CANEncoder m_encoder;
   public boolean shootable = false;
+  public double tempSpeed = 0;
 
   public Shooter() {
      // initialize motor
@@ -68,13 +69,14 @@ public class Shooter extends SubsystemBase {
      SmartDashboard.putNumber("Max Output", Constants.kMaxOutput);
      SmartDashboard.putNumber("Min Output", Constants.kMinOutput);
    }
-  public void WheelsOn() {
-
-    m_pidController.setReference(Constants.maxRPM, ControlType.kVelocity);
-    SmartDashboard.putNumber("SetPoint", Constants.maxRPM);
+  public void WheelsOn(double slider) {
+    tempSpeed = (slider + 1)/2;
+    tempSpeed*= 5000;
+    m_pidController.setReference(tempSpeed, ControlType.kVelocity);
+    SmartDashboard.putNumber("SetPoint", tempSpeed);
     SmartDashboard.putNumber("ProcessVariable", m_encoder.getVelocity());
     
-    if (m_encoder.getVelocity() + 5 >= Constants.maxRPM && m_encoder.getVelocity() - 5 <= Constants.maxRPM)
+    if (m_encoder.getVelocity() + 5 >= Constants.maxRPM)
     {
       shootable = true;
     }
