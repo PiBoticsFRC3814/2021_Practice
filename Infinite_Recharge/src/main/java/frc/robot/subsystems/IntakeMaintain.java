@@ -17,8 +17,6 @@ public class IntakeMaintain extends SubsystemBase {
    */
   WPI_TalonSRX frontIntake;
   WPI_TalonSRX rearIntake;
-  public boolean FToggle = false;
-  public boolean RToggle = false;
 
   public IntakeMaintain() {
     frontIntake = new WPI_TalonSRX(Constants.frontIntake);
@@ -31,23 +29,12 @@ public class IntakeMaintain extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void maintainIntakeFront(){
-    frontIntake.set(Constants.maintainSpeed);
-    FToggle = false;
-  }
-
-  public void ballIntakeFront(){
-    frontIntake.set(Constants.ballIntakeSpeed);
-    FToggle = true;
-  }
-
-  public void maintainIntakeRear(){
-    rearIntake.set(-Constants.maintainSpeed);
-    RToggle = false;
-  }
-
-  public void ballIntakeRear(){
+  public void intakeOn(){
     rearIntake.set(-Constants.ballIntakeSpeed);
-    RToggle = true;
+    frontIntake.set(Constants.ballIntakeSpeed);
+  }
+
+  public void intakeOff(){
+    rearIntake.set(0.0);
   }
 }

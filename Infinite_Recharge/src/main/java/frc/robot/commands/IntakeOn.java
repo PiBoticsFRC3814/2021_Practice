@@ -10,12 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMaintain;
 
-public class FIntakeToggle extends CommandBase {
+public class IntakeOn extends CommandBase {
   /**
    * Creates a new IntakeToggle.
    */
   private final IntakeMaintain m_IntakeMaintain;
-  public FIntakeToggle(IntakeMaintain intakeMaintain) {
+  public IntakeOn(IntakeMaintain intakeMaintain) {
 
     m_IntakeMaintain = intakeMaintain;
     
@@ -32,15 +32,7 @@ public class FIntakeToggle extends CommandBase {
   @Override
   public void execute() {
 
-    if(!m_IntakeMaintain.FToggle)
-    {
-      m_IntakeMaintain.ballIntakeFront();
-    }
-    else
-    {
-      m_IntakeMaintain.maintainIntakeFront();
-    }
-
+    m_IntakeMaintain.intakeOn();
   }
 
   // Called once the command ends or is interrupted.
