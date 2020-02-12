@@ -89,7 +89,7 @@ public class RobotContainer {
     
     
 
-    shooter.whenPressed(new Shoot(m_shooter,driverStick));
+    shooter.whenPressed(new Shoot(m_shooter, () -> driverStick.getRawAxis(3)));
     shooter.whenReleased(new StopShoot(m_shooter,m_LimeLight));
 
     climbUp.whenPressed(new ClimbUp(m_Climb));

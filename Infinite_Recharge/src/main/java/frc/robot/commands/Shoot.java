@@ -18,12 +18,12 @@ public class Shoot extends CommandBase {
    * Creates a new Shoot.
    */
   private final Shooter m_shooter;
-  private double m_slider;
+  private DoubleSupplier m_slider;
 
-  public Shoot(Shooter piboticsshooter, Joystick joy) {
+  public Shoot(Shooter piboticsshooter, DoubleSupplier slider) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_shooter = piboticsshooter;
-    m_slider = joy.getRawAxis(3);
+    m_slider = slider;
     addRequirements(m_shooter);
   }
 
@@ -35,7 +35,7 @@ public class Shoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shooter.WheelsOn(m_slider);
+    m_shooter.WheelsOn(m_slider.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
