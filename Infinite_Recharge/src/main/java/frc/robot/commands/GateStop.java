@@ -7,22 +7,16 @@
 
 package frc.robot.commands;
 
-
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BlockingMotor;
 
-public class GateTurn extends CommandBase {
-  private final BlockingMotor m_gateTurn;
+
+public class GateStop extends CommandBase {
   /**
-   * Creates a new BlockingMotor.
+   * Creates a new Gate.
    */
-  public GateTurn(BlockingMotor blockingMotor) {
-    m_gateTurn = blockingMotor;
-    addRequirements(m_gateTurn);
-    
-   // Use addRequirements() here to declare subsystem dependencies.
-    
+  public GateStop() {
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -33,7 +27,6 @@ public class GateTurn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_gateTurn.fire();
   }
 
   // Called once the command ends or is interrupted.

@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.BlockingMotor;
 
 public class GateReturn extends CommandBase {
-  private final BlockingMotor m_gateReturn;
+  private final BlockingMotor m_gateTurn;
   /**
    * Creates a new BlockingMotor.
    */
   public GateReturn(BlockingMotor blockingMotor) {
-    m_gateReturn = blockingMotor;
-    addRequirements(m_gateReturn);
+    m_gateTurn = blockingMotor;
+    addRequirements(m_gateTurn);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -29,7 +29,7 @@ public class GateReturn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_gateReturn.safety();
+    m_gateTurn.safety();
   }
 
   // Called once the command ends or is interrupted.
