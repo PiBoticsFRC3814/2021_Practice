@@ -102,8 +102,8 @@ public class RobotContainer {
     balanceRight.whenPressed(new BalanceRight(m_Balance));
     balanceRight.whenReleased(new StopBalance(m_Balance));
 
-    gateTurn.whenPressed(new GateTurn(m_Block));
-    gateTurn.whenReleased(new GateReturn(m_Block));
+    //gateTurn.whenPressed(new GateTurn(m_Block));
+    //gateTurn.whenReleased(new GateReturn(m_Block));
 
 
     Intake.whenPressed(new IntakeOn(m_IntakeMaintain));
