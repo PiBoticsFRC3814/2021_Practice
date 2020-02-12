@@ -88,7 +88,7 @@ public class AutoShoot extends CommandBase {
     SmartDashboard.putNumber("Zs", zs);
     SmartDashboard.putNumber("Ys", ys);
 
-    m_Shooter.WheelsOn();
+    //m_Shooter.WheelsOn();
 
     if (m_LimeLight.isInPosition() && m_Shooter.maxRPM())
     {
