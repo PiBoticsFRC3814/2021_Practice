@@ -108,7 +108,7 @@ public class AutoShoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(m_Limelight.isValidTarget())
+    if(m_LimeLight.isValidTarget())
     {
       return false;
     }

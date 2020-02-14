@@ -8,29 +8,33 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BlockingMotor;
+import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.Timer;
 
-
-public class GateStop extends CommandBase {
-  private final BlockingMotor m_stopMotor;
+public class CrossLine extends CommandBase {
+  
+  public Timer Timeguy; 
+  
   /**
-   * Creates a new Gate.
+   * Creates a new CrossLine.
    */
-  public GateStop(BlockingMotor blockingMotor) {
-    m_stopMotor = blockingMotor;
-    addRequirements(m_stopMotor);
+  public CrossLine() {
+    Timeguy = new Timer();
+
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
+    Timeguy.reset();
+    Timeguy.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_stopMotor.halt();
   }
 
   // Called once the command ends or is interrupted.
@@ -41,6 +45,10 @@ public class GateStop extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if(Timeguy.get() > 2.0){
+    return true;
+    }else{
+      return false;
+    }
   }
 }
