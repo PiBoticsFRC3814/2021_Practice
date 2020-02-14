@@ -36,5 +36,6 @@ public class IntakeMaintain extends SubsystemBase {
 
   public void intakeOff(){
     rearIntake.set(0.0);
+    frontIntake.set(0.0);
   }
 }

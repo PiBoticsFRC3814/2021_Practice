@@ -70,9 +70,9 @@ public class Shooter extends SubsystemBase {
      SmartDashboard.putNumber("Min Output", Constants.kMinOutput);
    }
   public void WheelsOn(double slider) {
-    tempSpeed = (slider + 1)/2;
+    tempSpeed = (-slider + 1)/2;
     tempSpeed*= 5000;
-    m_pidController.setReference(tempSpeed, ControlType.kVelocity);
+    m_pidController.setReference(-tempSpeed, ControlType.kVelocity);
     SmartDashboard.putNumber("SetPoint", tempSpeed);
     SmartDashboard.putNumber("ProcessVariable", m_encoder.getVelocity());
     

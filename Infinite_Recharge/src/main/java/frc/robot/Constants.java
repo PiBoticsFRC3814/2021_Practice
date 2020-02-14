@@ -45,16 +45,16 @@ public final class Constants {
     public static final double gateSpeed = 0.1;
     public static final double gateReverse = -0.1;
     
-
+// PID Shooter Values
     public static final double kP = 5e-5;
-    public static final double kI = 1e-6;
+    public static final double kI = 1;
     public static final double kD = 0;
     public static final double kIz = 0;
     public static final double kFF = 0;
     public static final double kMaxOutput = 1;
     public static final double kMinOutput = -1;
     public static final double maxRPM = -5000;
-
+//Controller IDs
     public static final int oi_Driver = 0;
     public static final int oi_Operator = 2;
 
