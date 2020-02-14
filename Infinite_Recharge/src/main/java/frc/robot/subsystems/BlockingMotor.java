@@ -32,4 +32,7 @@ public class BlockingMotor extends SubsystemBase {
   public void safety(){
     blockingMotor.set(Constants.gateReverse);
   }
+  public void halt(){
+    blockingMotor.set(0.0);
+  }
 }
