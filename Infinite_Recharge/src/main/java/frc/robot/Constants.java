@@ -57,5 +57,7 @@ public final class Constants {
 //Controller IDs
     public static final int oi_Driver = 0;
     public static final int oi_Operator = 2;
-
+//Limelight Constants
+    public static final double lHeight = 36;
+    public static final double tHeight = 90;
 }
