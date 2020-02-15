@@ -76,8 +76,8 @@ public class RobotContainer {
     final JoystickButton autoShoot = new JoystickButton(driverStick, 6);
     final JoystickButton Position = new JoystickButton(driverStick, 11);
     final JoystickButton Rotation = new JoystickButton(driverStick, 12);
-    final JoystickButton gateTurn = new JoystickButton(driverStick, 8);
-    final JoystickButton ToggleLight = new JoystickButton(driverStick, 1);
+    final JoystickButton gateTurn = new JoystickButton(driverStick, 9);
+    final JoystickButton ToggleLight = new JoystickButton(driverStick, 8);
 
     //fightstick buttons
     final JoystickButton climbUp = new JoystickButton(buttonStick, 3);

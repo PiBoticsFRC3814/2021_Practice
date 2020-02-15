@@ -25,7 +25,7 @@ public class Limelight extends SubsystemBase {
   }
 
   public void getData() {
-    z = (Constants.tHeight-Constants.lHeight)/(Math.tan(NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0.0)));
+    z = (Constants.tHeight-Constants.lHeight)/(Math.tan(Math.toRadians(Constants.llAngle+NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0.0))));
     yaw = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0);
     target = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0.0);
   }

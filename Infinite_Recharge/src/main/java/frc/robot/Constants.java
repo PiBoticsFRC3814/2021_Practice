@@ -26,7 +26,7 @@ public final class Constants {
     public static final int blMotor = 50;
     public static final int rightDrive = 2;
     public static final int ControlPanelMotor = 30;
-    public static final int shooterMotor = 20;
+    public static final int shooterMotor = 60;
 
 //pneumatic IDs
     public static final int PCM1 = 0;
@@ -36,7 +36,6 @@ public final class Constants {
     public static final int rearRetract = 3;
 
 //motor Speeds
-    public static final double maintainSpeed = 0.0;
     public static final double ballIntakeSpeed = 0.75;
     public static final double upSpeed = 0.5;
     public static final double downSpeed = -0.5;
@@ -44,20 +43,12 @@ public final class Constants {
     public static final double rightSpeed = -1;
     public static final double gateSpeed = 0.1;
     public static final double gateReverse = -0.1;
-    
-// PID Shooter Values
-    public static final double kP = 5e-5;
-    public static final double kI = 1;
-    public static final double kD = 0;
-    public static final double kIz = 0;
-    public static final double kFF = 0;
-    public static final double kMaxOutput = 1;
-    public static final double kMinOutput = -1;
-    public static final double maxRPM = -5000;
+
 //Controller IDs
     public static final int oi_Driver = 0;
     public static final int oi_Operator = 2;
 //Limelight Constants
     public static final double lHeight = 36;
     public static final double tHeight = 90;
+    public static final double llAngle = 19;
 }
