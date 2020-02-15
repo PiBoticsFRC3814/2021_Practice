@@ -50,11 +50,11 @@ public class DriveLimelight extends CommandBase {
     {
       ys = 0;
     }
-    if (m_LimeLight.z < 1)
+    if (m_LimeLight.z < 108)
     {
       zs = -0.4;
     }
-    else if (m_LimeLight.z > 1.5)
+    else if (m_LimeLight.z > 132)
     {
       zs = 0.4;
     }

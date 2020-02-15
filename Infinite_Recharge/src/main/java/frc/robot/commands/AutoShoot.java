@@ -53,21 +53,21 @@ public class AutoShoot extends CommandBase {
     SmartDashboard.putBoolean("Target Acquired", m_LimeLight.isValidTarget());
     if (m_LimeLight.yaw > 2)
     {
-      ys = 0.2;
+      ys = 0.3;
     }
     else if (m_LimeLight.yaw < -2)
     {
-      ys = -0.2;
+      ys = -0.3;
     }
     else
     {
       ys = 0;
     }
-    if (m_LimeLight.z < 1)
+    if (m_LimeLight.z < 9)
     {
       zs = -0.4;
     }
-    else if (m_LimeLight.z > 2)
+    else if (m_LimeLight.z > 11)
     {
       zs = 0.4;
     }
@@ -88,10 +88,11 @@ public class AutoShoot extends CommandBase {
     SmartDashboard.putNumber("Zs", zs);
     SmartDashboard.putNumber("Ys", ys);
 
-    //m_Shooter.WheelsOn();
+    m_Shooter.WheelsOn();
 
     if (m_LimeLight.isInPosition() && m_Shooter.maxRPM())
     {
+      //gate open
       m_Intake.intakeOn();
     }
     else
@@ -114,6 +115,7 @@ public class AutoShoot extends CommandBase {
     }
     else
     {
+      // gate closed
       return true;
     }
   }

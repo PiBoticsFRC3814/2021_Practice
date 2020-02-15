@@ -27,7 +27,8 @@ public class Shooter extends SubsystemBase {
   private CANPIDController m_pidController;
   private CANEncoder m_encoder;
   public boolean shootable = false;
-  public double tempSpeed = 0;
+  public double tempSpeed = Constants.maxRPM;
+  public double tempP = Constants.kP, tempI = Constants.kI, tempD = Constants.kD;
 
   public Shooter() {
      // initialize motor
@@ -53,25 +54,41 @@ public class Shooter extends SubsystemBase {
  
  
      // set PID coefficients
-     m_pidController.setP(Constants.kP);
-     m_pidController.setI(Constants.kI);
-     m_pidController.setD(Constants.kD);
+     m_pidController.setP(tempP);
+     m_pidController.setI(tempI);
+     m_pidController.setD(tempD);
      m_pidController.setIZone(Constants.kIz);
      m_pidController.setFF(Constants.kFF);
      m_pidController.setOutputRange(Constants.kMinOutput, Constants.kMaxOutput);
  
      // display PID coefficients on SmartDashboard
-     SmartDashboard.putNumber("P Gain", Constants.kP);
+     /*SmartDashboard.putNumber("P Gain", Constants.kP);
      SmartDashboard.putNumber("I Gain", Constants.kI);
      SmartDashboard.putNumber("D Gain", Constants.kD);
      SmartDashboard.putNumber("I Zone", Constants.kIz);
      SmartDashboard.putNumber("Feed Forward", Constants.kFF);
      SmartDashboard.putNumber("Max Output", Constants.kMaxOutput);
+     SmartDashboard.putNumber("Min Output", Constants.kMinOutput);*/
+     SmartDashboard.putNumber("P Gain", tempP);
+     SmartDashboard.putNumber("I Gain", tempI);
+     SmartDashboard.putNumber("D Gain", tempD);
+     SmartDashboard.putNumber("Feed Forward", Constants.kFF);
+     SmartDashboard.putNumber("Max Output", Constants.kMaxOutput);
      SmartDashboard.putNumber("Min Output", Constants.kMinOutput);
    }
-  public void WheelsOn(double slider) {
-    tempSpeed = (-slider + 1)/2;
-    tempSpeed*= 5000;
+  public void WheelsOn() {
+    //temporary stuff;
+    tempP=SmartDashboard.getNumber("P Gain", 0);
+    tempI=SmartDashboard.getNumber("I Gain", 0);
+    tempD=SmartDashboard.getNumber("D Gain", 0);
+    tempSpeed=SmartDashboard.getNumber("SetPoint", 0.0);
+    SmartDashboard.putNumber("P Gain", tempP);
+    SmartDashboard.putNumber("I Gain", tempI);
+    SmartDashboard.putNumber("D Gain", tempD);
+    SmartDashboard.putNumber("Feed Forward", Constants.kFF);
+    SmartDashboard.putNumber("Max Output", Constants.kMaxOutput);
+    SmartDashboard.putNumber("Min Output", Constants.kMinOutput);
+    //normal stuff
     m_pidController.setReference(-tempSpeed, ControlType.kVelocity);
     SmartDashboard.putNumber("SetPoint", tempSpeed);
     SmartDashboard.putNumber("ProcessVariable", m_encoder.getVelocity());
