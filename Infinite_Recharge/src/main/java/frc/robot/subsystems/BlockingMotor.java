@@ -17,7 +17,8 @@ public class BlockingMotor extends SubsystemBase {
    * Creates a new BlockingMotor.
    */
   public BlockingMotor() {
-
+    blockingMotor.enableCurrentLimit(true);
+    blockingMotor.configContinuousCurrentLimit(10);
   }
 
   @Override

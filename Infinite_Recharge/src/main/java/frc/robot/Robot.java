@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Limelight;
+import edu.wpi.first.cameraserver.CameraServer;
 
 
 /**
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   private Limelight m_Limelight;
+  CameraServer server;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -37,7 +39,8 @@ public class Robot extends TimedRobot {
 
     m_robotContainer = new RobotContainer();
     m_Limelight = new Limelight();
-
+    server = CameraServer.getInstance();
+    server.startAutomaticCapture("cam0", 0);
   }
 
   /**
@@ -74,6 +77,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
@@ -95,9 +99,11 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    
   }
 
   /**
