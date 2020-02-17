@@ -8,8 +8,10 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import java.lang.Math;
 
 public class Limelight extends SubsystemBase {
   /**
@@ -23,7 +25,7 @@ public class Limelight extends SubsystemBase {
   }
 
   public void getData() {
-    z = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0.0);
+    z = (Constants.tHeight-Constants.lHeight)/(Math.tan(Math.toRadians(Constants.llAngle+NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0.0))));
     yaw = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0);
     target = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0.0);
   }
@@ -56,7 +58,7 @@ public class Limelight extends SubsystemBase {
 
   public void displayOutput() {
     getData();
-    SmartDashboard.putNumber("Target Area", z);
+    SmartDashboard.putNumber("Distance", z);
     SmartDashboard.putNumber("Yaw", yaw);
   }
 

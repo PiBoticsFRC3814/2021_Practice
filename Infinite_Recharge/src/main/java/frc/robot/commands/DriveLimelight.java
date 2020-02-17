@@ -19,6 +19,8 @@ public class DriveLimelight extends CommandBase {
   Limelight m_LimeLight;
   DriveTrain m_PiboticsDrive;
   public static double ys, zs;
+  public static int timeOut = 0;
+  public static int position = 0;
   public DriveLimelight(DriveTrain piboticsdrive, Limelight LimeLight) {
     m_PiboticsDrive = piboticsdrive;
     m_LimeLight = LimeLight;
@@ -50,13 +52,13 @@ public class DriveLimelight extends CommandBase {
     {
       ys = 0;
     }
-    if (m_LimeLight.z < 1)
+    if (m_LimeLight.z < 74)
     {
-      zs = -0.4;
+      zs = 0.3;
     }
-    else if (m_LimeLight.z > 1.5)
+    else if (m_LimeLight.z > 98)
     {
-      zs = 0.4;
+      zs = -0.3;
     }
     else
     {
@@ -66,14 +68,27 @@ public class DriveLimelight extends CommandBase {
     if (ys == 0 && zs == 0)
     {
       m_LimeLight.position = true;
+      position++;
     }
     else
     {
       m_LimeLight.position = false;
     }
+
+    if (!m_LimeLight.isValidTarget())
+    {
+      timeOut++;
+    }
+    else if (m_LimeLight.isValidTarget())
+    {
+      timeOut = 0;
+    }
     m_PiboticsDrive.Drive(zs, ys, false);
     SmartDashboard.putNumber("Zs", zs);
     SmartDashboard.putNumber("Ys", ys);
+    SmartDashboard.putNumber("Counter", timeOut);
+    SmartDashboard.putNumber("pos", position);
+    SmartDashboard.putBoolean("ValidTarget", m_LimeLight.isValidTarget());
   }
 
   // Called once the command ends or is interrupted.
@@ -84,12 +99,13 @@ public class DriveLimelight extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (m_LimeLight.isValidTarget())
+    if (timeOut <= 100)
     {
       return false;
     }
     else
     {
+      m_PiboticsDrive.Drive(0, 0, false);
       m_LimeLight.offLight();
       return true;
     }

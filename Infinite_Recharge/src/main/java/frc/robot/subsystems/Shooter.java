@@ -10,11 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.revrobotics.CANPIDController;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.CANEncoder;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.Constants;
 
@@ -23,67 +19,22 @@ public class Shooter extends SubsystemBase {
    * Creates a new Shooter.
    */
 
-  private CANSparkMax m_motor;
-  private CANPIDController m_pidController;
-  private CANEncoder m_encoder;
+  private WPI_TalonSRX m_motor;
   public boolean shootable = false;
-  public double tempSpeed = 0;
+  public double tempSpeed = 1;
 
   public Shooter() {
      // initialize motor
-     m_motor = new CANSparkMax(Constants.shooterMotor, MotorType.kBrushless);
-
-     /**
-      * The RestoreFactoryDefaults method can be used to reset the configuration parameters
-      * in the SPARK MAX to their factory default state. If no argument is passed, these
-      * parameters will not persist between power cycles
-      */
-     m_motor.restoreFactoryDefaults();
-     m_motor.getEncoder();
+     m_motor = new WPI_TalonSRX(Constants.shooterMotor);
  
-     /**
-      * In order to use PID functionality for a controller, a CANPIDController object
-      * is constructed by calling the getPIDController() method on an existing
-      * CANSparkMax object
-      */
-     m_pidController = m_motor.getPIDController();
- 
-     // Encoder object created to display position values
-     m_encoder = m_motor.getEncoder();
- 
- 
-     // set PID coefficients
-     m_pidController.setP(Constants.kP);
-     m_pidController.setI(Constants.kI);
-     m_pidController.setD(Constants.kD);
-     m_pidController.setIZone(Constants.kIz);
-     m_pidController.setFF(Constants.kFF);
-     m_pidController.setOutputRange(Constants.kMinOutput, Constants.kMaxOutput);
- 
-     // display PID coefficients on SmartDashboard
-     SmartDashboard.putNumber("P Gain", Constants.kP);
-     SmartDashboard.putNumber("I Gain", Constants.kI);
-     SmartDashboard.putNumber("D Gain", Constants.kD);
-     SmartDashboard.putNumber("I Zone", Constants.kIz);
-     SmartDashboard.putNumber("Feed Forward", Constants.kFF);
-     SmartDashboard.putNumber("Max Output", Constants.kMaxOutput);
-     SmartDashboard.putNumber("Min Output", Constants.kMinOutput);
    }
-  public void WheelsOn(double slider) {
-    tempSpeed = (-slider + 1)/2;
-    tempSpeed*= 5000;
-    m_pidController.setReference(-tempSpeed, ControlType.kVelocity);
-    SmartDashboard.putNumber("SetPoint", tempSpeed);
-    SmartDashboard.putNumber("ProcessVariable", m_encoder.getVelocity());
+  public void WheelsOn() {
+    //temporary stuff;
+    tempSpeed=SmartDashboard.getNumber("SetPoint", 0.0);
     
-    if (m_encoder.getVelocity() + 5 >= Constants.maxRPM)
-    {
-      shootable = true;
-    }
-    else
-    {
-      shootable = false;
-    }
+    //normal stuff
+    m_motor.set(-tempSpeed);
+    SmartDashboard.putNumber("SetPoint", tempSpeed);
   }
   public void WheelsOff() {
     m_motor.set(0.0);

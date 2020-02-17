@@ -92,6 +92,22 @@ public class ControlPanel extends SubsystemBase {
 
   public void GetFMS() {
     fmsData = DriverStation.getInstance().getGameSpecificMessage();
+    if (Objects.equals(fmsData, "R"))
+    {
+      fmsData = "B";
+    }
+    else if (Objects.equals(fmsData, "G"))
+    {
+      fmsData = "Y";
+    }
+    else if (Objects.equals(fmsData, "B"))
+    {
+      fmsData = "R";
+    }
+    else if (Objects.equals(fmsData, "Y"))
+    {
+      fmsData = "G";
+    }
   }
 
   public void Position() {
@@ -144,7 +160,7 @@ public class ControlPanel extends SubsystemBase {
       counter++;
     }
 
-    if (counter <= 8)
+    if (counter <= 10)
     {
       ControlPanelMotor.set(1.0);
     }
