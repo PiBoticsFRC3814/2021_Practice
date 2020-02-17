@@ -51,7 +51,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
 
-    m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> driverStick.getY(), () -> driverStick.getX(), m_piboticsdrive));
+    m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> driverStick.getY(), () -> driverStick.getZ(), m_piboticsdrive));
     m_LimeLight.setDefaultCommand(new GetLimelight(m_LimeLight));
 
     // Configure the button bindings
@@ -84,6 +84,7 @@ public class RobotContainer {
     final JoystickButton climbDown = new JoystickButton(buttonStick, 1);
     final JoystickButton balanceLeft = new JoystickButton(buttonStick, 9);
     final JoystickButton balanceRight = new JoystickButton(buttonStick, 10);
+    
 
 
     

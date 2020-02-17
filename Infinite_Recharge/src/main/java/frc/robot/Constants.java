@@ -37,8 +37,8 @@ public final class Constants {
 
 //motor Speeds
     public static final double ballIntakeSpeed = 0.75;
-    public static final double upSpeed = 0.5;
-    public static final double downSpeed = -0.5;
+    public static final double upSpeed = 1.0;
+    public static final double downSpeed = -1.0;
     public static final double leftSpeed = 1;
     public static final double rightSpeed = -1;
     public static final double gateSpeed = 0.1;
