@@ -38,4 +38,8 @@ public class IntakeMaintain extends SubsystemBase {
     rearIntake.set(0.0);
     frontIntake.set(0.0);
   }
+  public void intakeReverse(){
+    rearIntake.set(Constants.ballIntakeSpeed/2);
+    frontIntake.set(-Constants.ballIntakeSpeed/2);
+  }
 }

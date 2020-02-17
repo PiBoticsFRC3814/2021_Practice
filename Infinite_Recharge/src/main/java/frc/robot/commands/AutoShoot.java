@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.BlockingMotor;
 import frc.robot.subsystems.DriveTrain;
@@ -24,6 +25,7 @@ public class AutoShoot extends CommandBase {
   DriveTrain m_PiboticsDrive;
   IntakeMaintain m_Intake;
   BlockingMotor m_Gate;
+  Timer shootDelay;
   public boolean isFinished = false;
   public static double ys = 0.0, zs = 0.0;
   public AutoShoot(Limelight limelight, Shooter shooter, DriveTrain drive, IntakeMaintain intake, BlockingMotor gate) {
@@ -38,11 +40,13 @@ public class AutoShoot extends CommandBase {
     addRequirements(m_PiboticsDrive);
     addRequirements(m_Intake);
     addRequirements(m_Gate);
+    shootDelay = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    shootDelay.reset();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -79,6 +83,7 @@ public class AutoShoot extends CommandBase {
     if (ys == 0 && zs == 0)
     {
       m_LimeLight.position = true;
+      shootDelay.start();
     }
     else
     {
@@ -90,10 +95,11 @@ public class AutoShoot extends CommandBase {
 
     m_Shooter.WheelsOn();
 
-    if (m_LimeLight.isInPosition() && m_Shooter.maxRPM())
+    if (m_LimeLight.isInPosition())
     {
-      //gate open
+      
       m_Intake.intakeOn();
+      
     }
     else
     {

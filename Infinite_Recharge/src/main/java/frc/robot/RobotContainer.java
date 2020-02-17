@@ -78,15 +78,17 @@ public class RobotContainer {
     final JoystickButton autoShoot = new JoystickButton(driverStick, 6);
     final JoystickButton Position = new JoystickButton(driverStick, 11);
     final JoystickButton Rotation = new JoystickButton(driverStick, 12);
-    final JoystickButton gateTurn = new JoystickButton(driverStick, 9);
-    final JoystickButton ToggleLight = new JoystickButton(driverStick, 8);
+    //final JoystickButton gateTurn = new JoystickButton(driverStick, 9);
+
 
     //fightstick buttons
     final JoystickButton climbUp = new JoystickButton(buttonStick, 3);
     final JoystickButton climbDown = new JoystickButton(buttonStick, 1);
     final JoystickButton balanceLeft = new JoystickButton(buttonStick, 9);
     final JoystickButton balanceRight = new JoystickButton(buttonStick, 10);
-    
+    final JoystickButton ToggleLight = new JoystickButton(buttonStick, 4);
+    final JoystickButton Outtake = new JoystickButton(buttonStick, 6);
+
 
 
     
@@ -111,6 +113,9 @@ public class RobotContainer {
 
     Intake.whenPressed(new IntakeOn(m_IntakeMaintain));
     Intake.whenReleased(new IntakeOff(m_IntakeMaintain));
+
+    Outtake.whenPressed(new IntakeReverse(m_IntakeMaintain));
+    Outtake.whenReleased(new IntakeOff(m_IntakeMaintain));
     
 
     LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight));
