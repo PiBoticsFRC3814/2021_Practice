@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
+import edu.wpi.first.wpilibj.RobotState;
 
 public class CrossLine extends CommandBase {
   
@@ -40,7 +43,7 @@ public class CrossLine extends CommandBase {
   @Override
   public void execute() {
     m_crossline.Drive(-0.4, 0.0, true);
-    
+    //RobotState.getBoolean("robot state", isAutonomous());
   }
 
   // Called once the command ends or is interrupted.
