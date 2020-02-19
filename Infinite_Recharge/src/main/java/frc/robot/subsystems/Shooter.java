@@ -21,7 +21,7 @@ public class Shooter extends SubsystemBase {
 
   private WPI_TalonSRX m_motor;
   public boolean shootable = false;
-  public double tempSpeed = 1;
+  public double tempSpeed = 0.0;
 
   public Shooter() {
      // initialize motor

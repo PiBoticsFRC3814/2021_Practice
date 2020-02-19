@@ -48,7 +48,7 @@ public final class Constants {
     public static final int oi_Driver = 0;
     public static final int oi_Operator = 2;
 //Limelight Constants
-    public static final double lHeight = 36;
+    public static final double lHeight = 35.5;
     public static final double tHeight = 90;
-    public static final double llAngle = 19;
+    public static final double llAngle = 18;
 }

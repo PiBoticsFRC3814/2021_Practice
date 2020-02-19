@@ -162,7 +162,7 @@ public class ControlPanel extends SubsystemBase {
 
     if (counter <= 10)
     {
-      ControlPanelMotor.set(0.9);
+      ControlPanelMotor.set(0.7);
     }
     else 
     {
