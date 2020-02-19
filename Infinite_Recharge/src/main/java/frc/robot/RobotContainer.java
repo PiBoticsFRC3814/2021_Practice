@@ -79,6 +79,7 @@ public class RobotContainer {
     final JoystickButton Position = new JoystickButton(driverStick, 11);
     final JoystickButton Rotation = new JoystickButton(driverStick, 12);
     //final JoystickButton gateTurn = new JoystickButton(driverStick, 9);
+    final JoystickButton FarLimelight = new JoystickButton(driverStick, 9);
 
 
     //fightstick buttons
@@ -109,6 +110,9 @@ public class RobotContainer {
 
     //gateTurn.whenPressed(new GateTurn(m_Block));
     //gateTurn.whenReleased(new GateReturn(m_Block));
+
+    FarLimelight.whenPressed(new FarLimelight(m_piboticsdrive,m_LimeLight));
+    FarLimelight.whenReleased(new GetLimelight(m_LimeLight));
 
 
     Intake.whenPressed(new IntakeOn(m_IntakeMaintain));

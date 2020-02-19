@@ -10,10 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Limelight;
-import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.Constants;
 
-public class DriveLimelight extends CommandBase {
+public class FarLimelight extends CommandBase {
   /**
    * Creates a new LimeLight.
 /** */
@@ -22,7 +22,7 @@ public class DriveLimelight extends CommandBase {
   public static double ys, zs;
   public static int timeOut = 0;
   public static int position = 0;
-  public DriveLimelight(DriveTrain piboticsdrive, Limelight LimeLight) {
+  public FarLimelight(DriveTrain piboticsdrive, Limelight LimeLight) {
     m_PiboticsDrive = piboticsdrive;
     m_LimeLight = LimeLight;
     addRequirements(m_PiboticsDrive);
@@ -53,11 +53,11 @@ public class DriveLimelight extends CommandBase {
     {
       ys = 0;
     }
-    if (m_LimeLight.z < Constants.shortLowest)
+    if (m_LimeLight.z < Constants.farLowest)
     {
       zs = 0.3;
     }
-    else if (m_LimeLight.z > Constants.shortFarthest)
+    else if (m_LimeLight.z > Constants.farFarthest)
     {
       zs = -0.3;
     }
