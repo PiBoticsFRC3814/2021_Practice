@@ -47,7 +47,7 @@ public class RobotContainer {
   private final Joystick driverStick = new Joystick(Constants.oi_Driver);
   private final Joystick buttonStick = new Joystick(Constants.oi_Operator);
 
-  private final CommandBase m_autonomousCommand = new Autonomous1(m_piboticsdrive,m_LimeLight,m_shooter,m_IntakeMaintain,m_Block, gyro);
+  private final CommandBase m_autonomousCommand = new Autonomous1(m_piboticsdrive,m_LimeLight,m_shooter,m_IntakeMaintain, gyro);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -128,7 +128,7 @@ public class RobotContainer {
     LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight, gyro));
     LimelightMove.whenReleased(new GetLimelight(m_LimeLight, gyro));
 
-    autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive,m_IntakeMaintain,m_Block, gyro));
+    autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive,m_IntakeMaintain,gyro));
     autoShoot.whenReleased(new GetLimelight(m_LimeLight, gyro));
     autoShoot.whenReleased(new StopShoot(m_shooter,m_LimeLight));
 

@@ -21,8 +21,33 @@ public class Limelight extends SubsystemBase {
   public boolean position = false;
   public boolean light = false;
   public double cameraAngle = 0;
+  public static double distanceShort = 0;
+  public static double distanceLong = 0;
+  public static int closest = 0;
+
 
   public Limelight() {
+  }
+
+  public int closest(double gyro) {
+    // 1 = short, 2 = long, 0 = no data xv
+    getData(gyro);
+    distanceShort = Math.abs(Constants.shortFarthest - z);
+    distanceLong = Math.abs(Constants.farLowest - z);
+
+    if (distanceLong > distanceShort)
+    {
+      closest = 1;
+    }
+    else if (distanceShort > distanceLong)
+    {
+      closest = 2;
+    }
+    else
+    {
+      closest = 0;
+    }
+    return closest;
   }
 
   public void getData(double gyroAngle) {

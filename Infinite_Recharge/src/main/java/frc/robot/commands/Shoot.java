@@ -10,6 +10,7 @@ package frc.robot.commands;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
@@ -18,6 +19,8 @@ public class Shoot extends CommandBase {
    * Creates a new Shoot.
    */
   private final Shooter m_shooter;
+
+  public double tempSpeed = 0.0;
 
   public Shoot(Shooter piboticsshooter) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -33,7 +36,9 @@ public class Shoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shooter.WheelsOn();
+    SmartDashboard.putNumber("SetPoint", tempSpeed);
+    tempSpeed=SmartDashboard.getNumber("SetPoint", 0.0);
+    m_shooter.WheelsOn(tempSpeed);
   }
 
   // Called once the command ends or is interrupted.
