@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.*;
@@ -17,7 +18,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
 
 
 
@@ -30,6 +30,8 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -45,7 +47,7 @@ public class RobotContainer {
   private final Joystick driverStick = new Joystick(Constants.oi_Driver);
   private final Joystick buttonStick = new Joystick(Constants.oi_Operator);
 
-  private final CommandBase m_autonomousCommand = new Autonomous1(m_piboticsdrive,m_LimeLight,m_shooter,m_IntakeMaintain,m_Block);
+  private final CommandBase m_autonomousCommand = new Autonomous1(m_piboticsdrive,m_LimeLight,m_shooter,m_IntakeMaintain,m_Block, gyro);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -53,7 +55,8 @@ public class RobotContainer {
   public RobotContainer() {
 
     m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> driverStick.getY(), () -> driverStick.getZ(), m_piboticsdrive));
-    m_LimeLight.setDefaultCommand(new GetLimelight(m_LimeLight));
+    m_LimeLight.setDefaultCommand(new GetLimelight(m_LimeLight, gyro));
+    m_ControlPanel.setDefaultCommand(new GrabColorData(m_ControlPanel));
     
 
     // Configure the button bindings
@@ -111,8 +114,8 @@ public class RobotContainer {
     //gateTurn.whenPressed(new GateTurn(m_Block));
     //gateTurn.whenReleased(new GateReturn(m_Block));
 
-    FarLimelight.whenPressed(new FarLimelight(m_piboticsdrive,m_LimeLight));
-    FarLimelight.whenReleased(new GetLimelight(m_LimeLight));
+    FarLimelight.whenPressed(new FarLimelight(m_piboticsdrive,m_LimeLight, gyro));
+    FarLimelight.whenReleased(new GetLimelight(m_LimeLight, gyro));
 
 
     Intake.whenPressed(new IntakeOn(m_IntakeMaintain));
@@ -122,11 +125,11 @@ public class RobotContainer {
     Outtake.whenReleased(new IntakeOff(m_IntakeMaintain));
     
 
-    LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight));
-    LimelightMove.whenReleased(new GetLimelight(m_LimeLight));
+    LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight, gyro));
+    LimelightMove.whenReleased(new GetLimelight(m_LimeLight, gyro));
 
-    autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive,m_IntakeMaintain,m_Block));
-    autoShoot.whenReleased(new GetLimelight(m_LimeLight));
+    autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive,m_IntakeMaintain,m_Block, gyro));
+    autoShoot.whenReleased(new GetLimelight(m_LimeLight, gyro));
     autoShoot.whenReleased(new StopShoot(m_shooter,m_LimeLight));
 
     Position.whenPressed(new PositionControl(m_ControlPanel));
@@ -135,7 +138,7 @@ public class RobotContainer {
     Rotation.whenReleased(new StopControlPanel(m_ControlPanel));
 
     ToggleLight.whenPressed(new ToggleLimelight(m_LimeLight));
-    ToggleLight.whenReleased(new GetLimelight(m_LimeLight));
+    ToggleLight.whenReleased(new GetLimelight(m_LimeLight, gyro));
   }
 
 

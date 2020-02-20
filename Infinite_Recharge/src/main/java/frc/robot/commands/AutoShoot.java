@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.BlockingMotor;
@@ -25,16 +26,18 @@ public class AutoShoot extends CommandBase {
   DriveTrain m_PiboticsDrive;
   IntakeMaintain m_Intake;
   BlockingMotor m_Gate;
+  ADXRS450_Gyro gyro;
   Timer shootDelay;
   public boolean isFinished = false;
   public static double ys = 0.0, zs = 0.0;
-  public AutoShoot(Limelight limelight, Shooter shooter, DriveTrain drive, IntakeMaintain intake, BlockingMotor gate) {
+  public AutoShoot(Limelight limelight, Shooter shooter, DriveTrain drive, IntakeMaintain intake, BlockingMotor gate, ADXRS450_Gyro gyroscope) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_LimeLight = limelight;
     m_Shooter = shooter;
     m_PiboticsDrive = drive;
     m_Intake = intake;
     m_Gate = gate;
+    gyro = gyroscope;
     addRequirements(m_LimeLight);
     addRequirements(m_Shooter);
     addRequirements(m_PiboticsDrive);
@@ -53,7 +56,7 @@ public class AutoShoot extends CommandBase {
   @Override
   public void execute() {
     m_LimeLight.onLight();
-    m_LimeLight.displayOutput();
+    m_LimeLight.displayOutput(gyro.getAngle());
     SmartDashboard.putBoolean("Target Acquired", m_LimeLight.isValidTarget());
     if (m_LimeLight.yaw > 2)
     {
@@ -121,7 +124,7 @@ public class AutoShoot extends CommandBase {
     }
     else
     {
-      // gate closed
+
       return true;
     }
   }

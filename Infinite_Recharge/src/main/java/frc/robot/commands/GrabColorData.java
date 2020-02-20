@@ -7,22 +7,18 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.ControlPanel;
 
-public class GetLimelight extends CommandBase {
+public class GrabColorData extends CommandBase {
   /**
-   * Creates a new GetLimelight.
+   * Creates a new GrabColorData.
    */
-  private final Limelight m_LimeLight;
-  ADXRS450_Gyro gyro;
-
-  public GetLimelight(Limelight LimeLight, ADXRS450_Gyro gyroscope) {
-    m_LimeLight = LimeLight;
-    gyro = gyroscope;
-    addRequirements(m_LimeLight);
+  ControlPanel m_ControlPanel;
+  public GrabColorData(ControlPanel controlPanel) {
+    m_ControlPanel = controlPanel;
+    addRequirements(m_ControlPanel);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -34,8 +30,7 @@ public class GetLimelight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_LimeLight.displayOutput(gyro.getAngle());
-    SmartDashboard.putBoolean("Target Acquired", m_LimeLight.isValidTarget());
+    m_ControlPanel.PutColorValue();
   }
 
   // Called once the command ends or is interrupted.

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.DriveTrain;
@@ -19,12 +20,19 @@ public class FarLimelight extends CommandBase {
 /** */
   Limelight m_LimeLight;
   DriveTrain m_PiboticsDrive;
+  ADXRS450_Gyro gyro;
+
   public static double ys, zs;
   public static int timeOut = 0;
   public static int position = 0;
-  public FarLimelight(DriveTrain piboticsdrive, Limelight LimeLight) {
+
+  public static Boolean isYPos = false;
+  public static Boolean isZPos = false;
+
+  public FarLimelight(DriveTrain piboticsdrive, Limelight LimeLight, ADXRS450_Gyro gyroscope) {
     m_PiboticsDrive = piboticsdrive;
     m_LimeLight = LimeLight;
+    gyro = gyroscope;
     addRequirements(m_PiboticsDrive);
     addRequirements(m_LimeLight);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -39,36 +47,41 @@ public class FarLimelight extends CommandBase {
   @Override
   public void execute() {
     m_LimeLight.onLight();
-    m_LimeLight.displayOutput();
+    m_LimeLight.displayOutput(gyro.getAngle());
     SmartDashboard.putBoolean("Target Acquired", m_LimeLight.isValidTarget());
     if (m_LimeLight.yaw > 2)
     {
       ys = 0.3;
+      isYPos = false;
     }
     else if (m_LimeLight.yaw < -2)
     {
       ys = -0.3;
+      isYPos = false;
     }
     else
     {
       ys = 0;
+      isYPos = true;
     }
     if (m_LimeLight.z < Constants.farLowest)
     {
       zs = 0.3;
+      isZPos = false;
     }
     else if (m_LimeLight.z > Constants.farFarthest)
     {
       zs = -0.3;
+      isZPos = false;
     }
     else
     {
       zs = 0;
+      isZPos = true;
     }
 
-    if (ys == 0 && zs == 0)
+    if (isYPos && isZPos)
     {
-      m_LimeLight.position = true;
       position++;
     }
     else
@@ -83,6 +96,11 @@ public class FarLimelight extends CommandBase {
     else if (m_LimeLight.isValidTarget())
     {
       timeOut = 0;
+    }
+
+    if (position >= 25)
+    {
+      m_LimeLight.position = true;
     }
     m_PiboticsDrive.Drive(zs, ys, false);
     SmartDashboard.putNumber("Zs", zs);
@@ -100,7 +118,7 @@ public class FarLimelight extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (timeOut <= 100)
+    if (timeOut <= 100 || !m_LimeLight.position)
     {
       return false;
     }
@@ -108,6 +126,8 @@ public class FarLimelight extends CommandBase {
     {
       m_PiboticsDrive.Drive(0, 0, false);
       m_LimeLight.offLight();
+      isZPos = false;
+      isYPos = false;
       return true;
     }
   }
