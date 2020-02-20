@@ -20,7 +20,7 @@ public class Shoot extends CommandBase {
    */
   private final Shooter m_shooter;
 
-  public double tempSpeed = 0.0;
+  public double tempSpeed = 0.8;
 
   public Shoot(Shooter piboticsshooter) {
     // Use addRequirements() here to declare subsystem dependencies.

@@ -53,8 +53,8 @@ public final class Constants {
     public static final double llAngle = 18;
 
     //short firing range
-    public static final double shortLowest = 95;
-    public static final double shortFarthest = 110;
+    public static final double shortLowest = 100;
+    public static final double shortFarthest = 115;
     //far firing range
     public static final double farLowest = 150;
     public static final double farFarthest = 165;

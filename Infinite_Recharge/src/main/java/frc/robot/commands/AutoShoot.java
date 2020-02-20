@@ -133,7 +133,7 @@ public class AutoShoot extends CommandBase {
         SmartDashboard.putNumber("Counter", timeOut);
         SmartDashboard.putNumber("pos", position);
         SmartDashboard.putBoolean("ValidTarget", m_LimeLight.isValidTarget());
-        m_Shooter.WheelsOn(1.0);
+        m_Shooter.WheelsOn(0.8);
       }
       else if (m_LimeLight.closest(gyro.getAngle()) == 2)
       {
