@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
-import frc.robot.subsystems.BlockingMotor;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeMaintain;
 import frc.robot.subsystems.Limelight;
@@ -125,7 +124,7 @@ public class AutoShoot extends CommandBase {
         if (position >= 25)
         {
           m_LimeLight.position = true;
-          Timer.delay(1);
+          Timer.delay(1.0);
         }
         m_PiboticsDrive.Drive(zs, ys, false);
         SmartDashboard.putNumber("Zs", zs);
@@ -133,7 +132,7 @@ public class AutoShoot extends CommandBase {
         SmartDashboard.putNumber("Counter", timeOut);
         SmartDashboard.putNumber("pos", position);
         SmartDashboard.putBoolean("ValidTarget", m_LimeLight.isValidTarget());
-        m_Shooter.WheelsOn(1.0);
+        m_Shooter.WheelsOn(0.8);
       }
       else if (m_LimeLight.closest(gyro.getAngle()) == 2)
       {
@@ -207,7 +206,7 @@ public class AutoShoot extends CommandBase {
     }
     else
     {
-      if (shootDelay.get() >= 0.1)
+      if (shootDelay.get() >= 0.2)
       {
         m_Intake.intakeOn();;
         Timer.delay(0.2);
