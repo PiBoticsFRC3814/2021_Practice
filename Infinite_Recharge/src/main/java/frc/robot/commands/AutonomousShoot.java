@@ -146,6 +146,7 @@ public class AutonomousShoot extends CommandBase {
         m_LimeLight.onLight();
         m_LimeLight.displayOutput(gyro.getAngle());
         SmartDashboard.putBoolean("Target Acquired", m_LimeLight.isValidTarget());
+      if (m_LimeLight.isValidTarget()){
         if (m_LimeLight.yaw > 1)
         {
           ys = 0.3;
@@ -185,7 +186,7 @@ public class AutonomousShoot extends CommandBase {
         {
           m_LimeLight.position = false;
         }
-    
+      }
         if (!m_LimeLight.isValidTarget())
         {
           timeOut++;
