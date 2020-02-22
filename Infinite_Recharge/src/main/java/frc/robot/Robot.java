@@ -25,7 +25,6 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   private Limelight m_Limelight;
-  CameraServer server;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -39,8 +38,6 @@ public class Robot extends TimedRobot {
 
     m_robotContainer = new RobotContainer();
     m_Limelight = new Limelight();
-    server = CameraServer.getInstance();
-    server.startAutomaticCapture("cam0", 0);
   }
 
   /**

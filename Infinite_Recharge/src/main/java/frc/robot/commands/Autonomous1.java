@@ -22,7 +22,7 @@ public class Autonomous1 extends SequentialCommandGroup {
    */
   public Autonomous1(DriveTrain piboticsdrive, Limelight limeLight, Shooter piboticsShooter, IntakeMaintain intake, ADXRS450_Gyro gyro) {
    addCommands(
-     new AutoShoot(limeLight, piboticsShooter, piboticsdrive, intake, gyro),
+     new AutonomousShoot(limeLight, piboticsShooter, piboticsdrive, intake, gyro),
      new CrossLine(piboticsdrive)
      
     );

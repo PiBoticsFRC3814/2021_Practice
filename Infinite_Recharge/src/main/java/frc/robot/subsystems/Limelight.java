@@ -51,7 +51,7 @@ public class Limelight extends SubsystemBase {
   }
 
   public void getData(double gyroAngle) {
-    cameraAngle = Constants.llAngle + gyroAngle;
+    cameraAngle = Constants.llAngle;
     z = (Constants.tHeight-Constants.lHeight)/(Math.tan(Math.toRadians(cameraAngle+NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0.0))));
     yaw = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0);
     target = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0.0);

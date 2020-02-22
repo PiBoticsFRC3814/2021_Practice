@@ -20,6 +20,7 @@ import com.revrobotics.ColorMatchResult;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 
@@ -44,6 +45,7 @@ public class ControlPanel extends SubsystemBase {
   public static final WPI_TalonSRX ControlPanelMotor = new WPI_TalonSRX(Constants.ControlPanelMotor);
 
   public static String colorCode = "N";
+  public static String gotoColor = "N";
   public static String fmsData = "N";
   public static String initialColor = "N";
   public static int counter = 0;
@@ -94,26 +96,28 @@ public class ControlPanel extends SubsystemBase {
     fmsData = DriverStation.getInstance().getGameSpecificMessage();
     if (Objects.equals(fmsData, "R"))
     {
-      fmsData = "B";
+      gotoColor = "B";
     }
     else if (Objects.equals(fmsData, "G"))
     {
-      fmsData = "Y";
+      gotoColor = "Y";
     }
     else if (Objects.equals(fmsData, "B"))
     {
-      fmsData = "R";
+      gotoColor = "R";
     }
     else if (Objects.equals(fmsData, "Y"))
     {
-      fmsData = "G";
+      gotoColor = "G";
     }
   }
 
   public void Position() {
     PutColorValue();
-    if (Objects.equals(fmsData,colorCode))
+    if (Objects.equals(gotoColor,colorCode))
     {
+      ControlPanelMotor.set(-0.5);
+      Timer.delay(0.03);
       ControlPanelMotor.set(0.0);
       posFinish = true;
     }

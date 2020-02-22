@@ -20,7 +20,7 @@ public class Shoot extends CommandBase {
    */
   private final Shooter m_shooter;
 
-  public double tempSpeed = 0.8;
+  public double tempSpeed = 0.85;
 
   public Shoot(Shooter piboticsshooter) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -37,7 +37,7 @@ public class Shoot extends CommandBase {
   @Override
   public void execute() {
     SmartDashboard.putNumber("SetPoint", tempSpeed);
-    tempSpeed=SmartDashboard.getNumber("SetPoint", 0.0);
+    //tempSpeed=SmartDashboard.getNumber("SetPoint", 0.0);
     m_shooter.WheelsOn(tempSpeed);
   }
 

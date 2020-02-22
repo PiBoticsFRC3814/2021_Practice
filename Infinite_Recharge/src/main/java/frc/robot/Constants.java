@@ -43,6 +43,7 @@ public final class Constants {
     public static final double rightSpeed = -1;
     public static final double gateSpeed = 0.1;
     public static final double gateReverse = -0.1;
+    public static final double shooterSpeed = 0.85;
 
 //Controller IDs
     public static final int oi_Driver = 0;
@@ -53,9 +54,9 @@ public final class Constants {
     public static final double llAngle = 18;
 
     //short firing range
-    public static final double shortLowest = 100;
-    public static final double shortFarthest = 115;
+    public static final double shortLowest = 107;
+    public static final double shortFarthest = 127;
     //far firing range
-    public static final double farLowest = 150;
-    public static final double farFarthest = 165;
+    public static final double farLowest = 184;
+    public static final double farFarthest = 204;
 }

@@ -21,7 +21,7 @@ public class Shooter extends SubsystemBase {
 
   private WPI_TalonSRX m_motor;
   public boolean shootable = false;
-  public double tempSpeed = 0.0;
+  public double tempSpeed = 0.85;
 
   public Shooter() {
      // initialize motor
@@ -30,12 +30,12 @@ public class Shooter extends SubsystemBase {
    }
   public void WheelsOn(double speed) {
     //temporary stuff;
-    tempSpeed=SmartDashboard.getNumber("SetPoint", 0.0);
+    //tempSpeed=SmartDashboard.getNumber("SetPoint", 0.0);
     
     //normal stuff
    // m_motor.set(-tempSpeed);
     m_motor.set(-speed);
-    SmartDashboard.putNumber("SetPoint", tempSpeed);
+    //SmartDashboard.putNumber("SetPoint", tempSpeed);
   }
   public void WheelsOff() {
     m_motor.set(0.0);
