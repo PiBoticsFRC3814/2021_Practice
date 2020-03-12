@@ -41,7 +41,6 @@ public class RobotContainer {
   private final Limelight m_LimeLight = new Limelight();
   private final ClimbMotor m_Climb = new ClimbMotor();
   private final BalanceMotor m_Balance = new BalanceMotor();
-  private final BlockingMotor m_Block = new BlockingMotor();
   private final ControlPanel m_ControlPanel = new ControlPanel();
 
   private final Joystick driverStick = new Joystick(Constants.oi_Driver);
@@ -78,7 +77,7 @@ public class RobotContainer {
     final JoystickButton Intake = new JoystickButton(driverStick, 7);
     final JoystickButton shooter = new JoystickButton(driverStick, 2);
     final JoystickButton LimelightMove =  new JoystickButton(driverStick, 10);
-    final JoystickButton autoShoot = new JoystickButton(driverStick, 6);
+    final JoystickButton autoIntake = new JoystickButton(driverStick, 6);
     final JoystickButton Position = new JoystickButton(driverStick, 11);
     final JoystickButton Rotation = new JoystickButton(driverStick, 12);
     //final JoystickButton gateTurn = new JoystickButton(driverStick, 9);
@@ -128,9 +127,8 @@ public class RobotContainer {
     LimelightMove.whenPressed(new DriveLimelight(m_piboticsdrive,m_LimeLight, gyro));
     LimelightMove.whenReleased(new GetLimelight(m_LimeLight, gyro));
 
-    autoShoot.whenPressed(new AutoShoot(m_LimeLight,m_shooter,m_piboticsdrive,m_IntakeMaintain,gyro));
-    autoShoot.whenReleased(new GetLimelight(m_LimeLight, gyro));
-    autoShoot.whenReleased(new StopShoot(m_shooter,m_LimeLight));
+    autoIntake.whenPressed(new NewIntakeOn(m_IntakeMaintain));
+    autoIntake.whenReleased(new NewIntakeOff(m_IntakeMaintain));
 
     Position.whenPressed(new PositionControl(m_ControlPanel));
     Position.whenReleased(new StopControlPanel(m_ControlPanel));

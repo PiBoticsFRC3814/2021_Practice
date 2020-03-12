@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
@@ -15,13 +16,22 @@ public class IntakeMaintain extends SubsystemBase {
   /**
    * Creates a new IntakeBalls.
    */
-  WPI_TalonSRX frontIntake;
-  WPI_TalonSRX rearIntake;
+  WPI_TalonSRX frontIndex;
+  WPI_TalonSRX rearIndex;
+  WPI_TalonSRX mecanumIntake;
+  WPI_TalonSRX liftIntake;
+
+  DigitalInput lowerIntake;
+  DigitalInput upperIntake;
 
   public IntakeMaintain() {
-    frontIntake = new WPI_TalonSRX(Constants.frontIntake);
-    rearIntake = new WPI_TalonSRX(Constants.rearIntake);
-    
+    frontIndex = new WPI_TalonSRX(Constants.frontIntake);
+    rearIndex = new WPI_TalonSRX(Constants.rearIntake);
+    mecanumIntake = new WPI_TalonSRX(Constants.mecanumIntake);
+    liftIntake = new WPI_TalonSRX(Constants.liftIntake);
+
+    lowerIntake = new DigitalInput(Constants.lowerInput);
+    upperIntake = new DigitalInput(Constants.upperInput);
   }
 
   @Override
@@ -30,16 +40,40 @@ public class IntakeMaintain extends SubsystemBase {
   }
 
   public void intakeOn(){
-    rearIntake.set(-Constants.ballIntakeSpeed);
-    frontIntake.set(Constants.ballIntakeSpeed);
+    rearIndex.set(-Constants.ballIntakeSpeed);
+    frontIndex.set(Constants.ballIntakeSpeed);
   }
 
   public void intakeOff(){
-    rearIntake.set(0.0);
-    frontIntake.set(0.0);
+    rearIndex.set(0.0);
+    frontIndex.set(0.0);
+    mecanumIntake.set(0.0);
   }
   public void intakeReverse(){
-    rearIntake.set(Constants.ballIntakeSpeed/2);
-    frontIntake.set(-Constants.ballIntakeSpeed/2);
+    rearIndex.set(Constants.ballIntakeSpeed/2);
+    frontIndex.set(-Constants.ballIntakeSpeed/2);
+  }
+  
+  public void autoIntake(){
+    if (!upperIntake.get())
+    {
+      mecanumIntake.set(Constants.mecanumIntakeSpeed);
+      if (!lowerIntake.get())
+      {
+        intakeOn();
+      }
+      else
+      {
+        intakeOff();
+      }
+    }
+  }
+
+  public void intakeDown(){
+    liftIntake.set(-Constants.liftIntakeSpeed);
+  }
+
+  public void intakeUp(){
+    liftIntake.set(Constants.liftIntakeSpeed);
   }
 }

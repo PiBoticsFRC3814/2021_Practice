@@ -20,6 +20,8 @@ public final class Constants {
 //talon IDs
     public static final int frontIntake = 10;
     public static final int rearIntake = 11;
+    public static final int mecanumIntake = 12;
+    public static final int liftIntake = 13;
     public static final int cMotor = 40;
     public static final int bMotor = 41;
     public static final int leftDrive = 1;
@@ -27,6 +29,9 @@ public final class Constants {
     public static final int rightDrive = 2;
     public static final int ControlPanelMotor = 30;
     public static final int shooterMotor = 60;
+//Digital Input IDs
+    public static final int lowerInput = 1;
+    public static final int upperInput = 2;
 
 //pneumatic IDs
     public static final int PCM1 = 0;
@@ -37,6 +42,8 @@ public final class Constants {
 
 //motor Speeds
     public static final double ballIntakeSpeed = 0.75;
+    public static final double mecanumIntakeSpeed = 1.0;
+    public static final double liftIntakeSpeed = 0.5;
     public static final double upSpeed = 1.0;
     public static final double downSpeed = -1.0;
     public static final double leftSpeed = 1;
