@@ -21,7 +21,7 @@ public final class Constants {
     public static final int frontIntake = 10;
     public static final int rearIntake = 11;
     public static final int mecanumIntake = 12;
-    public static final int mecanumBack = 14;
+    public static final int mecanumBackIntake = 14;
     public static final int liftIntake = 13;
     public static final int cMotor = 40;
     public static final int bMotor = 41;

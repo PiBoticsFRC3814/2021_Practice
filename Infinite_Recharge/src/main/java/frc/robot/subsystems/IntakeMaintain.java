@@ -19,6 +19,7 @@ public class IntakeMaintain extends SubsystemBase {
   WPI_TalonSRX frontIndex;
   WPI_TalonSRX rearIndex;
   WPI_TalonSRX mecanumIntake;
+  WPI_TalonSRX mecanumBackIntake;
   WPI_TalonSRX liftIntake;
 
   DigitalInput lowerIntake;
@@ -28,6 +29,7 @@ public class IntakeMaintain extends SubsystemBase {
     frontIndex = new WPI_TalonSRX(Constants.frontIntake);
     rearIndex = new WPI_TalonSRX(Constants.rearIntake);
     mecanumIntake = new WPI_TalonSRX(Constants.mecanumIntake);
+    mecanumBackIntake = new WPI_TalonSRX(Constants.mecanumBackIntake);
     liftIntake = new WPI_TalonSRX(Constants.liftIntake);
 
     lowerIntake = new DigitalInput(Constants.lowerInput);
@@ -48,15 +50,18 @@ public class IntakeMaintain extends SubsystemBase {
     rearIndex.set(0.0);
     frontIndex.set(0.0);
     mecanumIntake.set(0.0);
+    mecanumBackIntake.set(0.0);
   }
   public void intakeReverse(){
     rearIndex.set(Constants.ballIntakeSpeed/2);
     frontIndex.set(-Constants.ballIntakeSpeed/2);
+    mecanumBackIntake.set(-Constants.mecanumIntakeSpeed/2);
   }
   
   public void autoIntake(){
     if (!upperIntake.get())
     {
+      mecanumIntake.set(Constants.mecanumIntakeSpeed);
       mecanumIntake.set(Constants.mecanumIntakeSpeed);
       if (!lowerIntake.get())
       {
@@ -66,6 +71,10 @@ public class IntakeMaintain extends SubsystemBase {
       {
         intakeOff();
       }
+    }
+    else 
+    {
+      intakeOff();
     }
   }
 
