@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+//the purpose of the constance file is so certain variable that are not expected to change can be setup and cahgned here in ONE location so we do not need to change it all over.
 package frc.robot;
 
 /**
@@ -21,10 +21,6 @@ public final class Constants {
     public static final int leftDrive = 1;
     public static final int rightDrive = 2;
 
-//Digital Input IDs
-    public static final int lowerInput = 1;
-    public static final int upperInput = 2;
-
 //pneumatic IDs
     public static final int PCM1 = 0;
     public static final int frontExtend = 0;
@@ -32,30 +28,7 @@ public final class Constants {
     public static final int rearExtend = 2;
     public static final int rearRetract = 3;
 
-//motor Speeds
-    public static final double ballIntakeSpeed = 0.75;
-    public static final double mecanumIntakeSpeed = 1.0;
-    public static final double liftIntakeSpeed = 0.5;
-    public static final double upSpeed = 1.0;
-    public static final double downSpeed = -1.0;
-    public static final double leftSpeed = 1;
-    public static final double rightSpeed = -1;
-    public static final double gateSpeed = 0.1;
-    public static final double gateReverse = -0.1;
-    public static final double shooterSpeed = 0.85;
-
-//Controller IDs
+//Controller (joystick) IDs
     public static final int oi_Driver = 0;
     public static final int oi_Operator = 2;
-//Limelight Constants
-    public static final double lHeight = 35.5;
-    public static final double tHeight = 90;
-    public static final double llAngle = 18;
-
-    //short firing range
-    public static final double shortLowest = 107;
-    public static final double shortFarthest = 127;
-    //far firing range
-    public static final double farLowest = 184;
-    public static final double farFarthest = 204;
 }
