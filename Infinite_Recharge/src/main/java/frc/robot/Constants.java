@@ -23,10 +23,8 @@ public final class Constants {
 
 //pneumatic IDs
     public static final int PCM1 = 0;
-    public static final int frontExtend = 0;
-    public static final int frontRetract = 1;
-    public static final int rearExtend = 2;
-    public static final int rearRetract = 3;
+    public static final int Sol1 = 0;
+    public static final int Sol2 = 1;
 
 //Controller (joystick) IDs
     public static final int oi_Driver = 0;
