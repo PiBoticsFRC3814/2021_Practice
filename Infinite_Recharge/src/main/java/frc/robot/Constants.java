@@ -18,18 +18,9 @@ package frc.robot;
 public final class Constants {
     
 //talon IDs
-    public static final int frontIntake = 10;
-    public static final int rearIntake = 11;
-    public static final int mecanumIntake = 12;
-    public static final int mecanumBackIntake = 14;
-    public static final int liftIntake = 13;
-    public static final int cMotor = 40;
-    public static final int bMotor = 41;
     public static final int leftDrive = 1;
-    public static final int blMotor = 50;
     public static final int rightDrive = 2;
-    public static final int ControlPanelMotor = 30;
-    public static final int shooterMotor = 60;
+
 //Digital Input IDs
     public static final int lowerInput = 1;
     public static final int upperInput = 2;
