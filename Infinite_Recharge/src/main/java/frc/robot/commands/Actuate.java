@@ -31,11 +31,11 @@ public class Actuate extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if toggle {
-      Out code  
+    if m_piston.direction {
+      m_piston.PistonOut();  
     }
     else {
-      in code
+      m_piston.PistonIn();
     }
   }
 
