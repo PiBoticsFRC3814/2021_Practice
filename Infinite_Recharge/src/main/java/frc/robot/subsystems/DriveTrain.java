@@ -25,12 +25,8 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
-  public void Drive(double y, double x, boolean stick) {
-    piboticsdrive.arcadeDrive(-y, x, stick); // this will make the robot drive based on the double variables given to it
-  }
-
-  public boolean isInverted(){
-    return leftmotor.getInverted();
+  public void Drive(double y, double x, boolean spin) {
+    piboticsdrive.arcadeDrive(-y, x, spin); // this will make the robot drive based on the double variables given to it
   }
 
   @Override
