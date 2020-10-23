@@ -13,15 +13,26 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Piston extends SubsystemBase {
-  /**
-   * Creates a new ExampleSubsystem.
-   */
-  public Piston() {
 
+  DoubleSolenoid pist;
+  public Boolean direction = true;
+  
+  public Piston() {
+    pist = new DoubleSolenoid(0, Constants.Sol1, Constants.Sol2);
   }
   
-  
+   public void PistonOut()
+  {
+    pist.set(Value.kForward);
+    direction = false;
+  }
 
+  public void PistonIn()
+  {
+    pist.set(Value.kReverse);
+    direction = true;
+  } 
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
