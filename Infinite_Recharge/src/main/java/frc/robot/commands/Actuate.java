@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  * An example command that uses an example subsystem.
  */
 public class Actuate extends CommandBase {
-  private final Actuate m_piston;
+  private final Piston m_piston;
 
 
   public Actuate(Piston piston) {
