@@ -18,9 +18,9 @@ public class Actuate extends CommandBase {
 
 
   public Actuate(Piston piston) {
-    m_subsystem = subsystem;
+    m_piston = piston;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(m_piston);
   }
 
   // Called when the command is initially scheduled.
@@ -31,6 +31,12 @@ public class Actuate extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if toggle {
+      Out code  
+    }
+    else {
+      in code
+    }
   }
 
   // Called once the command ends or is interrupted.
