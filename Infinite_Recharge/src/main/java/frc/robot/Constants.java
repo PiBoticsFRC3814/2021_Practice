@@ -28,5 +28,4 @@ public final class Constants {
 
 //Controller (joystick) IDs
     public static final int oi_Driver = 0;
-    public static final int oi_Operator = 2;
 }
