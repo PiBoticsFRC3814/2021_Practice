@@ -58,17 +58,15 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //joystick buttons that we define
-    final JoystickButton PistonIn = new JoystickButton(driverStick, 5);
-    final JoystickButton PistonOut = new JoystickButton(driverStick, 6);
+    final JoystickButton Piston = new JoystickButton(driverStick, 5);
+    
 
  
     //below is the code thaat make the button do stuff
 
-    PistonIn.whenPressed(new COMMAND());
-    PistonIn.whenReleased(new COMMAND2());
-    
-    PistonOut.whenPressed(new COMMAND3());
-    PistonOut.whenReleased(new COMMAND2());
+    Piston.whenPressed(new COMMAND());
+    Piston.whenReleased(new COMMAND2());
+
 
   }
 
