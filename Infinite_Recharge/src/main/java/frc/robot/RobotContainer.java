@@ -7,15 +7,12 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import frc.robot.Constants;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Constants;
 
 
 
@@ -28,14 +25,18 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+
+  private final Piston m_piston = new Piston();
 
   private final DriveTrain m_piboticsdrive = new DriveTrain();
 
   private final Joystick driverStick = new Joystick(Constants.oi_Driver);
 
-  private final CommandBase m_autonomousCommand = new Autonomous1(m_piboticsdrive,m_LimeLight,m_shooter,m_IntakeMaintain, gyro);
+  private final ExampleCommand m_autonomousCommand = new ExampleCommand(m_exampleSubsystem);
+
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -64,8 +65,7 @@ public class RobotContainer {
  
     //below is the code thaat make the button do stuff
 
-    Piston.whenPressed(new COMMAND());
-    Piston.whenReleased(new COMMAND2());
+    Piston.whenPressed(new Actuate(m_piston));
 
 
   }
