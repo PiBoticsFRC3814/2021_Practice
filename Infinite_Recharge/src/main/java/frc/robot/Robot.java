@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.cscore.MjpegServer;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 
 
@@ -24,7 +26,6 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   
-  CameraServer server;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -34,9 +35,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    server = CameraServer.getInstance();
-    server.setQuality(50);
-    server.startAutomaticCapture("cam1");
+    UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
+    MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181);
+    mjpegServer1.setSource(usbCamera);
+
     m_robotContainer = new RobotContainer();
   }
 
@@ -65,7 +67,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    m_Limelight.offLight();
     
   }
 
