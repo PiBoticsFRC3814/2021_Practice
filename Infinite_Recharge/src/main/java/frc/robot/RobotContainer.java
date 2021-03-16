@@ -9,6 +9,7 @@ package frc.robot;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -38,13 +39,14 @@ public class RobotContainer {
 
 
 
+
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     //below are the default comands that we create these will run by default if nothing else is trying to use the required subsystem thing that need to run all the time 
     //should be default commands like the drive train...
-    m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> driverStick.getY(), () -> driverStick.getZ(), m_piboticsdrive));   
+    m_piboticsdrive.setDefaultCommand(new PiboticsDrive(() -> driverStick.getX(), () -> driverStick.getY(), m_piboticsdrive));   
 
     // Configure the button bindings
     configureButtonBindings(); //this runs the button config below...  

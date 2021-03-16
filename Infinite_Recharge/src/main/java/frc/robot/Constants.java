@@ -18,8 +18,8 @@ package frc.robot;
 public final class Constants {
     
 //talon IDs
-    public static final int leftDrive = 1;
-    public static final int rightDrive = 2;
+    public static final int leftDrive = 0;
+    public static final int rightDrive = 1;
 
 //pneumatic IDs
     public static final int PCM1 = 0;
