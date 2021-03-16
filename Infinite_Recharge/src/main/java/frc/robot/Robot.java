@@ -7,6 +7,7 @@
 //this is the MAIN robot proram.  this is what is run and constantly looped when the robot is enabled.
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -37,7 +38,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
     MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181);
+    Compressor comp = new Compressor(0);
     mjpegServer1.setSource(usbCamera);
+    comp.setClosedLoopControl(true);
 
     m_robotContainer = new RobotContainer();
   }
